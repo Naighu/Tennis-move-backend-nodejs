@@ -15,6 +15,7 @@ export function validateAjv(schemas: Targets) {
   return (req: Request, res: Response, next: NextFunction) => {
     for (const target of ["params", "query", "body"] as const) {
       const v = compiled[target];
+
       if (!v) continue;
       const data = (req as any)[target];
       const ok = v(data);
@@ -22,7 +23,9 @@ export function validateAjv(schemas: Targets) {
         throw AppError.from("VALIDATION_ERROR", { target, errors: v.errors });
       }
       // Ajv may coerce / apply defaults — keep the coerced data
-      (req as any)[target] = data;
+      if (target === "body") {
+        (req as any)[target] = data;
+      }
     }
     next();
   };

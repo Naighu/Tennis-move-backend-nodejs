@@ -1,11 +1,13 @@
 import { Router } from "express";
 
 import { validateAjv } from "../../middleware/validateAjv";
-import { TrendsTopPlayersBodySchema } from "../../controller/trends/schemas/getTopPlayers.schema";
-import { getTopPlayers,getSelectors } from "../../controller/trends/trends.controller";
+import { TrendsGetVideoBodySchema, TrendsTopPlayersBodySchema } from "../../controller/trends/schema";
+import { getTopPlayers,getSelectors,getVideo } from "../../controller/trends/trends.controller";
 const router = Router();
 
-router.post("/top-players",validateAjv({ body: TrendsTopPlayersBodySchema }),getTopPlayers);
+router.get("/top-players",validateAjv({ query: TrendsTopPlayersBodySchema }),getTopPlayers);
+router.get("/video",validateAjv({ query: TrendsGetVideoBodySchema }),getVideo);
+
 router.get("/selectors",getSelectors);
 
 

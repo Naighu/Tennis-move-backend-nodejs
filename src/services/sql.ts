@@ -19,19 +19,56 @@ export function loadSql(name: string): string {
  * Only replaces {{TABLE}}, {{FILTER_ID}}, {{FEATURE_EXPR}}
  * Values MUST still be passed as $1..$n parameters via pg.
  */
-export function renderSql(
-  template: string,
-  parts: { TABLE: string; FILTER_ID: string; FEATURE_EXPR: string }
-): string {
-  // Very strict: only allow safe characters in identifiers/expressions.
-  const ident = /^[a-zA-Z_][a-zA-Z0-9_]*$/; // for table/column
-  if (!ident.test(parts.TABLE)) throw new Error("Unsafe TABLE");
-  if (!ident.test(parts.FILTER_ID)) throw new Error("Unsafe FILTER_ID");
-  // FEATURE_EXPR can include operators/arrows; restrict to a vetted list externally.
-  if (!parts.FEATURE_EXPR) throw new Error("Missing FEATURE_EXPR");
+type SqlParts = {
+  TABLE: string;
+  FILTER_ID?: string | null;   // optional / nullable
+  FEATURE_EXPR?: string | null; // optional / nullable
+};
 
-  return template
+export function renderSql(template: string, parts: SqlParts): string {
+  const IDENT = /^[A-Za-z_][A-Za-z0-9_]*$/; // table/column names only
+
+  // TABLE is mandatory and must be a safe identifier
+  if (!IDENT.test(parts.TABLE)) throw new Error("Unsafe TABLE");
+
+  // Validate/normalize optionals
+  const hasFilter =
+    parts.FILTER_ID != null && parts.FILTER_ID !== "" && IDENT.test(parts.FILTER_ID);
+  const filterId = hasFilter ? parts.FILTER_ID! : "";
+
+  const featureExpr = (parts.FEATURE_EXPR ?? "").trim();
+  const hasFeature = featureExpr.length > 0; // (validate externally if needed)
+
+  // 1) Basic placeholder replacement
+  let sql = template
     .replaceAll("{{TABLE}}", parts.TABLE)
-    .replaceAll("{{FILTER_ID}}", parts.FILTER_ID)
-    .replaceAll("{{FEATURE_EXPR}}", parts.FEATURE_EXPR);
+    .replaceAll("{{FILTER_ID}}", filterId)
+    .replaceAll("{{FEATURE_EXPR}}", hasFeature ? featureExpr : "");
+
+  // 2) Drop optional blocks if value is missing
+  // Mark optional sections in your SQL like:
+  //   /*?FILTER_ID*/ AND t.{{FILTER_ID}} BETWEEN $1 AND $2 /*?*/
+  //   /*?FEATURE_EXPR*/ , AVG(({{FEATURE_EXPR}})::float) AS avg_val /*?*/
+  const dropBlock = (name: "FILTER_ID" | "FEATURE_EXPR") => {
+    const re = new RegExp(String.raw`\/\*\?${name}\*\/[\s\S]*?\/\*\?\*\/`, "g");
+    sql = sql.replace(re, "");
+  };
+  if (!hasFilter) dropBlock("FILTER_ID");
+  if (!hasFeature) dropBlock("FEATURE_EXPR");
+
+  // 3) Tidy up common leftovers (dangling AND/WHERE, extra spaces/commas)
+  sql = sql
+    // WHERE 1=1 AND -> WHERE
+    .replace(/\bWHERE\s+1\s*=\s*1\s+AND\b/gi, "WHERE ")
+    // Remove empty WHERE or "WHERE 1=1" with nothing after it
+    .replace(/\bWHERE\s+1\s*=\s*1\s*(?=$|GROUP|ORDER|LIMIT|OFFSET|;)/gi, "")
+    .replace(/\bWHERE\s*(?=$|GROUP|ORDER|LIMIT|OFFSET|;)/gi, "")
+    // Remove ", )" → ")"
+    .replace(/,\s*\)/g, ")")
+    // Collapse multiple ANDs/spaces
+    .replace(/\s+AND\s+(?=AND\b)/gi, " AND ")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+
+  return sql;
 }

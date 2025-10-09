@@ -1,9 +1,11 @@
 import { query, withTransaction } from "../../services/postgres_db";
 import { Request, Response } from "express";
 import { sendOk } from "../../utils/respond";
-import { TrendsTopPlayersBody, FEATURES, FILTERS, TABLES, RANKING_BRACKETS } from "./schemas/getTopPlayers.schema";
+import { TrendsTopPlayersBody, FEATURES, FILTERS, TABLES, RANKING_BRACKETS, TrendsGetVideoBody } from "./types";
 import { loadSql, renderSql } from "../../services/sql";
 import { AppError } from "../../types/error.type";
+import { presignGet } from "../../services/s3";
+import { Bucket } from "../../types/bucket.type";
 
 /**
     Gets the unique year, tournament id, and population values from the competition match table
@@ -11,18 +13,25 @@ import { AppError } from "../../types/error.type";
 export async function getSelectors(req: Request, res: Response) {
   try {
     const sql = loadSql("trends/fetch_selectors.sql");
-    const { rows } = await query(sql);
-    return sendOk(res, rows);
+    const { rows } = await query(sql).catch((err) => {
+      throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
+    });
+    const out = rows.map(r => r.result);
+    if (out.length == 0) {
+      return sendOk(res, []);
+    } else {
+      return sendOk(res, out[0]);
+    }
 
   } catch (err: any) {
-    throw new AppError("DB_ERROR", err, undefined);
+    throw new AppError("INTERNAL", err, undefined);
   }
 }
 
 
 export async function getTopPlayers(req: Request, res: Response) {
   try {
-    const b = req.body as TrendsTopPlayersBody;
+    const b = req.query as unknown as TrendsTopPlayersBody;
 
     // Resolve ONLY from allow-lists (prevents injection)
     const table = TABLES[b.table];
@@ -51,22 +60,55 @@ export async function getTopPlayers(req: Request, res: Response) {
     });
     const { rows: percentile_rows } = await query(sql, params);
 
-    top_n_rows.forEach((it: any, i: number) => { it.percentile = percentile_rows[0]['percentiles'][i] });
+
+
+    top_n_rows.forEach(async (it: any, i: number) => {
+      const prefix = it['row_id'].split('_')[0];
+
+      const { rows: names } = await query("SELECT athlete_name FROM athletes WHERE competition_player_id = $1", [prefix]).catch((err) => {
+        return [] as any;
+      });
+      it.athlete_name = names.length > 0 ? names[0].athlete_name : "Unknown";
+      it.percentile = percentile_rows[0]['percentiles'][i]
+    });
+
 
     sql = renderSql(sqlDistr, {
       TABLE: table,
       FILTER_ID: filterId,
       FEATURE_EXPR: featureExp,
     });
-    const {rows: distribution_rows} = await query(sql,params);
+    const { rows: distribution_rows } = await query(sql, params).catch((err) => {
+      throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
+    });
 
     return sendOk(res, {
       "top_players": top_n_rows,
-       "distribution": distribution_rows[0]
+      "distribution": distribution_rows[0]
     });
   } catch (err: any) {
 
-    throw new AppError("DB_ERROR", err, undefined);
+    throw new AppError("INTERNAL", err, undefined);
   }
 }
 
+
+
+export async function getVideo(req: Request, res: Response) {
+  try {
+    const b = req.query as unknown as TrendsGetVideoBody;
+    const row_id = b.selected_row.split('_')
+    const video_key = `match-play/${row_id[1]}/${row_id[2]}/${row_id[3]}/video/${b.source}/${b.camera}/${b.selected_row}.mp4`
+
+
+    const url = await presignGet(Bucket.TennisMoveResources, video_key);
+
+    return sendOk(res, { "url": url });
+  } catch (err: any) {
+    if (err instanceof AppError) {
+      throw err;
+    } else {
+      throw new AppError("INTERNAL", err, undefined);
+    }
+  }
+}
