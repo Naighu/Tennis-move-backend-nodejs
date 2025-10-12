@@ -50,6 +50,7 @@ export async function getTopPlayers(req: Request, res: Response) {
     });
 
     const params = [rankingBracket[0], rankingBracket[1], b.year, b.pop, b.lower_value, b.upper_value];
+console.log(params);
 
     const { rows: top_n_rows } = await query(sql, params);
 
