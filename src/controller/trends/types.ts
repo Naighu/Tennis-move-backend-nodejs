@@ -6,9 +6,14 @@ export const TABLES = {
 } as const;
 
 export const FILTERS = {
+  //serve
   serve_speed_kph_filt: "serve_speed_kph_filt",
+
+  //ros
   ros_serve_speed_kph_filt:"ros_serve_speed_kph_filt",
   return_reach_filt: "return_reach_filt",
+
+  //end-range
   distance_in_m_filt: "distance_in_m_filt"
 } as const;
 
@@ -17,6 +22,21 @@ export const FEATURES = {
   serve_speed: "t.serve_speed",
   leg_drive_ms: "t.results->>'leg_drive_ms'",
   impact_height_m: "t.results->>'impact_height_m'",
+
+  // ros metrics
+  return_reach: "t.results->>'return_reach'",
+  return_stiffness: "t.results->>'return_stiffness'",
+  return_movement_duration: "t.results->>'return_movement_duration'",
+  return_movement_velocity: "t.results->>'return_movement_velocity'",
+  return_split_timing: "t.results->>'return_split_timing'",
+  return_movement_displacement: "t.results->>'return_movement_displacement'",
+
+  //endrange
+  peak_velocity_ms: "t.results->>'peak_velocity_ms'",
+  peak_acceleration_mss: "t.results->>'peak_acceleration_mss'",
+  peak_deceleration_mss: "t.results->>'peak_deceleration_mss'",
+  time_in_turn_s: "t.results->>'time_in_turn_s'",
+  cadence_spm: "t.results->>'cadence_spm'",
 } as const;
 
 export const RANKING_BRACKETS = {
