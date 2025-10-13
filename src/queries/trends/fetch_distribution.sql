@@ -9,6 +9,7 @@ WITH filtered_players AS (
     AND year = $3
     AND population_id = $4
   GROUP BY reference_match_id
+  LIMIT 10
 ),
 stats AS (
   SELECT

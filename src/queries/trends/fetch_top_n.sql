@@ -19,7 +19,7 @@ WHERE t.{{FILTER_ID}} BETWEEN $5 AND $6
       AND ($2::int IS NULL OR (elem->>'ranking')::int <= $2)
   )
 ORDER BY ({{FEATURE_EXPR}})::float DESC
-LIMIT $2;
+LIMIT 10;
 
 /* $1=minRank, $2=maxRank (nullable), $3=year, $4=pop, $5=lower, $6=upper, $7=limit (nullable) */
 
