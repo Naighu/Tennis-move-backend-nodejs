@@ -41,7 +41,7 @@ export const FEATURES = {
 
 export const RANKING_BRACKETS = {
   "Top 10": [1, 10],
-  "Top 50": [1, 50],
+  "Top 50": [11, 50],
   "Top 100": [51, 100],
   "Top 250": [101, 250],
   "250+": [251, 5000],

@@ -43,36 +43,53 @@ export async function getTopPlayers(req: Request, res: Response) {
     const sqlPerct = loadSql("trends/fetch_percentiles.sql");
     const sqlDistr = loadSql("trends/fetch_distribution.sql");
 
-    let sql = renderSql(sqlTpl, {
-      TABLE: table,
-      FILTER_ID: filterId,
-      FEATURE_EXPR: featureExp,
-    });
+    // let sql = renderSql(sqlTpl, {
+    //   TABLE: table,
+    //   FILTER_ID: filterId,
+    //   FEATURE_EXPR: featureExp,
+    // });
 
     const params = [rankingBracket[0], rankingBracket[1], b.year, b.pop, b.lower_value, b.upper_value];
-console.log(params);
+    console.log(params);
 
-    const { rows: top_n_rows } = await query(sql, params);
+    // const { rows: top_n_rows } = await query(sql, params);
 
-    sql = renderSql(sqlPerct, {
+    let sql = renderSql(sqlPerct, {
       TABLE: table,
       FILTER_ID: filterId,
       FEATURE_EXPR: featureExp,
     });
-    const { rows: percentile_rows } = await query(sql, params);
-
-
-
-    top_n_rows.forEach(async (it: any, i: number) => {
-      const prefix = it['row_id'].split('_')[0];
-
-      const { rows: names } = await query("SELECT athlete_name FROM athletes WHERE competition_player_id = $1", [prefix]).catch((err) => {
-        return [] as any;
-      });
-      it.athlete_name = names.length > 0 ? names[0].athlete_name : "Unknown";
-      it.percentile = percentile_rows[0]['percentiles'][i]
+    
+    const { rows: percentile_rows } = await query(sql, params).catch((err) => {
+      console.log(err);
+      
+      throw new AppError("DB_ERROR", err, undefined);
     });
 
+
+
+    const enriched = await Promise.all(
+      percentile_rows.map(async (it: any, i: number) => {
+        const prefix = it.row_id.split('_')[0];
+
+        let athlete_name = "Unknown";
+        try {
+          const { rows: names } = await query(
+            "SELECT athlete_name FROM athletes WHERE competition_player_id = $1",
+            [prefix]
+          );
+          if (names?.length) athlete_name = names[0].athlete_name;
+        } catch (_) {
+          // keep "Unknown"
+        }
+
+        // guard in case percentiles missing/short
+        const percs = percentile_rows?.[0]?.percentiles ?? [];
+        const percentile = percs[i] ?? null;
+
+        return { ...it, athlete_name, percentile };
+      })
+    );
 
     sql = renderSql(sqlDistr, {
       TABLE: table,
@@ -80,12 +97,14 @@ console.log(params);
       FEATURE_EXPR: featureExp,
     });
     const { rows: distribution_rows } = await query(sql, params).catch((err) => {
-      throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
+      console.log(err);
+      
+      throw new AppError("DB_ERROR", err, undefined);
     });
 
     return sendOk(res, {
-      "top_players": top_n_rows,
-      "distribution": distribution_rows[0]
+      top_players: enriched,
+      distribution: distribution_rows[0],
     });
   } catch (err: any) {
 

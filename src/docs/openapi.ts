@@ -399,7 +399,7 @@ export const openapiSpec: OpenAPIObject = {
         parameters: [
 
           {
-            name: "row_id",
+            name: "selected_row",
             in: "query",
             schema: { type: "string" },
             required: true,
