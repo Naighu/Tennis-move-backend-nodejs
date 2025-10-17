@@ -13,8 +13,9 @@ WITH filtered_players AS (
 base_rows AS (
   SELECT
     t.row_id,
-    ({{FEATURE_EXPR}})::float AS metric,
-    t.{{FILTER_ID}}           AS filter_val
+    t.{{FILTER_ID}}         AS filter_val,
+    t.competition_player_id AS competition_player_id,
+    ({{FEATURE_EXPR}})::float AS metric
   FROM {{TABLE}} t
   JOIN competition_points cp ON t.point_id = cp.point_id
   JOIN filtered_players fp
@@ -25,37 +26,42 @@ base_rows AS (
 ),
 ranked AS (
   SELECT
-    row_id, metric, filter_val,
+    row_id, metric, filter_val, competition_player_id,
     ROW_NUMBER() OVER (ORDER BY metric DESC, row_id) AS rn
   FROM base_rows
 ),
 top_n AS (
-  SELECT row_id, metric, filter_val
+  SELECT row_id, metric, filter_val, competition_player_id
   FROM ranked
-  WHERE rn <= 10 
+  WHERE rn <= 10
 ),
 stats_top AS (
   SELECT
-    AVG(metric)        AS mean_val_top,
-    STDDEV_POP(metric) AS sd_val_top
+    AVG(metric)        AS mean_val,
+    STDDEV_POP(metric) AS sd_val
   FROM top_n
 )
 SELECT
-  st.mean_val_top,
-  st.sd_val_top,
-  st.mean_val_top + st.sd_val_top AS upper_limit_top,
-  st.mean_val_top - st.sd_val_top AS lower_limit_top,
-  (SELECT COUNT(*) FROM base_rows) AS population_size,
-  (SELECT COUNT(*) FROM top_n)     AS n_top,
-  (
-    SELECT jsonb_agg(
-             to_jsonb(t)
-             || jsonb_build_object(
-                  'z_score',
-                  CASE WHEN st.sd_val_top > 0
-                       THEN (t.metric - st.mean_val_top) / st.sd_val_top
-                       ELSE NULL END)
-           ORDER BY t.metric DESC, t.row_id)
-    FROM top_n t
-  ) AS top_rows
+  jsonb_build_object(
+    'distribution',
+    jsonb_build_object(
+      'mean_val',    st.mean_val,
+      'sd_value',    st.sd_val,
+      'upper_limit', st.mean_val + st.sd_val,
+      'lower_limit', st.mean_val - st.sd_val
+    ),
+    'top_rows',
+    (
+      SELECT jsonb_agg(x)
+      FROM (
+        SELECT
+          to_jsonb(t)
+          || jsonb_build_object('name', a.athlete_name) AS x
+        FROM top_n t
+        LEFT JOIN athletes a
+          ON a.competition_player_id = t.competition_player_id
+        ORDER BY t.metric DESC, t.row_id
+      ) s
+    )
+  ) AS payload
 FROM stats_top st;

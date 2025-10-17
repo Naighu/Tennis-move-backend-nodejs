@@ -39,80 +39,23 @@ export async function getTopPlayers(req: Request, res: Response) {
     const featureExp = FEATURES[b.feature];
     const rankingBracket = RANKING_BRACKETS[b.ranking_bracket ?? "All"];
 
-    const sqlTpl = loadSql("trends/trends.sql");
-    const sqlPerct = loadSql("trends/fetch_percentiles.sql");
-    const sqlDistr = loadSql("trends/fetch_distribution.sql");
+    const sqlRaw = loadSql("trends/trends.sql");
 
-    let sql = renderSql(sqlTpl, {
+
+    let sql = renderSql(sqlRaw, {
       TABLE: table,
       FILTER_ID: filterId,
       FEATURE_EXPR: featureExp,
     });
 
     const params = [rankingBracket[0], rankingBracket[1], b.year, b.pop, b.lower_value, b.upper_value];
-    console.log(params);
-
-    // const { rows: top_n_rows } = await query(sql, params);
-
-    // let sql = renderSql(sqlPerct, {
-    //   TABLE: table,
-    //   FILTER_ID: filterId,
-    //   FEATURE_EXPR: featureExp,
-    // });
-
-    const { rows: percentile_rows } = await query(sql, params).catch((err) => {
+    const { rows: trends_rows } = await query(sql, params).catch((err) => {
       console.log(err);
 
       throw new AppError("DB_ERROR", err, undefined);
-    });
-
-
-    console.log(percentile_rows);
-
-    const enriched = await Promise.all(
-      percentile_rows[0]['top_rows'].map(async (it: any, i: number) => {
-        const prefix = it.row_id.split('_')[0];
-
-        let athlete_name = "Unknown";
-        try {
-          const { rows: names } = await query(
-            "SELECT athlete_name FROM athletes WHERE competition_player_id = $1",
-            [prefix]
-          );
-          if (names?.length) athlete_name = names[0].athlete_name;
-        } catch (_) {
-          // keep "Unknown"
-        }
-
-        // guard in case percentiles missing/short
-        const percs = percentile_rows?.[0]?.percentiles ?? [];
-        const percentile = percs[i] ?? null;
-
-        return { ...it, athlete_name, percentile };
-      })
-    );
-
-    // sql = renderSql(sqlDistr, {
-    //   TABLE: table,
-    //   FILTER_ID: filterId,
-    //   FEATURE_EXPR: featureExp,
-    // });
-    // const { rows: distribution_rows } = await query(sql, params).catch((err) => {
-    //   console.log(err);
-
-    //   throw new AppError("DB_ERROR", err, undefined);
-    // });
-    const distribution = {
-      mean_val: percentile_rows[0]['mean_val_top'],
-      sd_val: percentile_rows[0]['sd_val_top'],
-      upper_limit: percentile_rows[0]['upper_limit_top'],
-      lower_limit: percentile_rows[0]['lower_limit_top'],
-
-    }
-    return sendOk(res, {
-      top_players: enriched,
-      distribution: distribution,
-    });
+    });    
+    return sendOk(res, 
+     trends_rows[0]['payload']);
   } catch (err: any) {
 
     throw new AppError("INTERNAL", err, undefined);
