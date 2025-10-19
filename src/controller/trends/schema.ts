@@ -39,3 +39,17 @@ export const TrendsGetVideoBodySchema: SchemaObject = {
 
     }
 } as const;
+
+export const TrendsGetWinPercentageSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["player_ids"],
+    properties: {
+      player_ids: {
+        type: "array",
+        items: { type: "string" },
+        minItems: 1,  
+        uniqueItems: true,  
+    }
+    }
+} as const;

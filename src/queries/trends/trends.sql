@@ -1,21 +1,20 @@
 WITH filtered_players AS (
-  SELECT
+  SELECT DISTINCT
     reference_match_id,
-    jsonb_array_elements_text(jsonb_agg(elem->>'competition_player_id')) AS player_id
+    elem->>'competition_player_id' AS player_id
   FROM competition_matches
   CROSS JOIN LATERAL jsonb_array_elements(player_ids) AS elem
   WHERE (elem->>'ranking')::int >= $1
     AND ($2::int IS NULL OR (elem->>'ranking')::int <= $2)
     AND year = $3
     AND population_id = $4
-  GROUP BY reference_match_id
 ),
 base_rows AS (
   SELECT
     t.row_id,
-    t.{{FILTER_ID}}         AS filter_val,
-    t.competition_player_id AS competition_player_id,
-    ({{FEATURE_EXPR}})::float AS metric
+    t.{{FILTER_ID}}            AS filter_val,
+    t.competition_player_id    AS competition_player_id,
+    ({{FEATURE_EXPR}})::float  AS metric
   FROM {{TABLE}} t
   JOIN competition_points cp ON t.point_id = cp.point_id
   JOIN filtered_players fp
@@ -24,16 +23,25 @@ base_rows AS (
   WHERE t.{{FILTER_ID}} BETWEEN $5 AND $6
     AND ({{FEATURE_EXPR}}) IS NOT NULL
 ),
-ranked AS (
-  SELECT
-    row_id, metric, filter_val, competition_player_id,
-    ROW_NUMBER() OVER (ORDER BY metric DESC, row_id) AS rn
-  FROM base_rows
+per_player_best AS (
+  SELECT row_id, metric, filter_val, competition_player_id
+  FROM (
+    SELECT
+      row_id, metric, filter_val, competition_player_id,
+      ROW_NUMBER() OVER (
+        PARTITION BY competition_player_id
+        ORDER BY metric DESC, row_id
+      ) AS rn_per_player
+    FROM base_rows
+  ) s
+  WHERE rn_per_player = 1
 ),
 top_n AS (
-  SELECT row_id, metric, filter_val, competition_player_id
-  FROM ranked
-  WHERE rn <= 10
+  SELECT
+    row_id, metric, filter_val, competition_player_id
+  FROM per_player_best
+  ORDER BY metric DESC, row_id
+  LIMIT 10
 ),
 stats_top AS (
   SELECT
@@ -61,7 +69,7 @@ SELECT
         LEFT JOIN athletes a
           ON a.competition_player_id = t.competition_player_id
         ORDER BY t.metric DESC, t.row_id
-      ) s
+      ) AS s
     )
   ) AS payload
 FROM stats_top st;

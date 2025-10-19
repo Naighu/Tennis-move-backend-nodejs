@@ -70,3 +70,7 @@ export interface TrendsGetVideoBody {
   source: string;
   camera: string;
 } 
+
+export interface TrendsGetWinPercentageBody {
+  player_ids: string[];
+}

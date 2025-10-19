@@ -1,7 +1,7 @@
 import { query, withTransaction } from "../../services/postgres_db";
 import { Request, Response } from "express";
 import { sendOk } from "../../utils/respond";
-import { TrendsTopPlayersBody, FEATURES, FILTERS, TABLES, RANKING_BRACKETS, TrendsGetVideoBody } from "./types";
+import { TrendsTopPlayersBody, FEATURES, FILTERS, TABLES, RANKING_BRACKETS, TrendsGetVideoBody, TrendsGetWinPercentageBody } from "./types";
 import { loadSql, renderSql } from "../../services/sql";
 import { AppError } from "../../types/error.type";
 import { presignGet } from "../../services/s3";
@@ -81,4 +81,23 @@ export async function getVideo(req: Request, res: Response) {
       throw new AppError("INTERNAL", err, undefined);
     }
   }
+}
+
+export async function getWinPercentage(req: Request, res: Response) {
+  try { 
+     const players= req.body.player_ids as unknown as TrendsGetWinPercentageBody;
+     const sql = loadSql("trends/fetch_win_percentage.sql");
+      const { rows: trends_rows } = await query(sql, [players]).catch((err) => {
+      console.log(err);
+
+      throw new AppError("DB_ERROR", err, undefined);
+    });   
+ return sendOk(res, 
+     trends_rows);
+
+  } catch (err: any) {  if (err instanceof AppError) {
+      throw err;
+    } else {
+      throw new AppError("INTERNAL", err, undefined);
+    }   }
 }

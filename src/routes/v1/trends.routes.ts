@@ -1,14 +1,16 @@
 import { Router } from "express";
 
 import { validateAjv } from "../../middleware/validateAjv";
-import { TrendsGetVideoBodySchema, TrendsTopPlayersBodySchema } from "../../controller/trends/schema";
-import { getTopPlayers,getSelectors,getVideo } from "../../controller/trends/trends.controller";
+import { TrendsGetVideoBodySchema, TrendsGetWinPercentageSchema, TrendsTopPlayersBodySchema } from "../../controller/trends/schema";
+import { getTopPlayers,getSelectors,getVideo, getWinPercentage } from "../../controller/trends/trends.controller";
 const router = Router();
 
 router.get("/top-players",validateAjv({ query: TrendsTopPlayersBodySchema }),getTopPlayers);
 router.get("/video",validateAjv({ query: TrendsGetVideoBodySchema }),getVideo);
 
 router.get("/selectors",getSelectors);
+router.post("/win-percentage", validateAjv ({body: TrendsGetWinPercentageSchema}),getWinPercentage);
+
 
 
 export default router;

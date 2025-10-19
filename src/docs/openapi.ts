@@ -17,7 +17,7 @@ export const openapiSpec: OpenAPIObject = {
         type: "object",
         properties: {
           ok: { type: "boolean", const: true },
-          data: {},
+          data: {}, // generic
           meta: {
             type: "object",
             properties: {
@@ -53,7 +53,24 @@ export const openapiSpec: OpenAPIObject = {
         required: ["ok", "error"],
         additionalProperties: true,
       },
+
+      // NEW: request schema for win-percentage
+      TrendsGetWinPercentageRequest: {
+        type: "object",
+        additionalProperties: false,
+        required: ["player_ids"],
+        properties: {
+          player_ids: {
+            type: "array",
+            items: { type: "string" },
+            minItems: 1,
+            uniqueItems: true,
+            example: ["ATPD994", "ATPMM58"],
+          },
+        },
+      },
     },
+
     parameters: {
       // Shared query params
       YearParam: {
@@ -121,7 +138,7 @@ export const openapiSpec: OpenAPIObject = {
         description: "Upper bound for filter",
       },
 
-      // Competition/video-specific (added)
+      // Competition/video-specific
       AthleteIdParam: {
         name: "player_id",
         in: "query",
@@ -135,10 +152,10 @@ export const openapiSpec: OpenAPIObject = {
         required: false,
         schema: { type: "string" },
         description: "Reference match identifier",
-      }
-
+      },
     },
   },
+
   paths: {
     "/api/v1/trends/selectors": {
       get: {
@@ -146,24 +163,9 @@ export const openapiSpec: OpenAPIObject = {
         summary: "Get selectors for trends",
         security: [{ ApiKeyAuth: [] }],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
@@ -174,24 +176,9 @@ export const openapiSpec: OpenAPIObject = {
         summary: "Get selectors for competition",
         security: [{ ApiKeyAuth: [] }],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
@@ -207,148 +194,65 @@ export const openapiSpec: OpenAPIObject = {
           { $ref: "#/components/parameters/PopulationParam" },
         ],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
 
-    // NEW: /competition/table-data
     "/api/v1/competition/table-data": {
       get: {
         tags: ["Competition"],
         summary: "Get competition table data (by year/tournament/population/feature)",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
-
           { $ref: "#/components/parameters/TableParam" },
           { $ref: "#/components/parameters/ReferenceMatchIdParam" },
           { $ref: "#/components/parameters/AthleteIdParam" },
         ],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
 
-    // NEW: /competition/video
     "/api/v1/competition/video": {
       get: {
         tags: ["Competition"],
         summary: "Get selected competition videos",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
-
-          {
-            name: "match",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          },
-          {
-            name: "source",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          },
-          {
-            name: "camera",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          }, {
-            name: "selected_row",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          }
+          { name: "match", in: "query", schema: { type: "string" }, required: true },
+          { name: "source", in: "query", schema: { type: "string" }, required: true },
+          { name: "camera", in: "query", schema: { type: "string" }, required: true },
+          { name: "selected_row", in: "query", schema: { type: "string" }, required: true },
         ],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
-"/api/v1/competition/match-id": {
+
+    "/api/v1/competition/match-id": {
       get: {
         tags: ["Competition"],
         summary: "Get match id",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
-
-         { $ref: "#/components/parameters/YearParam" },
+          { $ref: "#/components/parameters/YearParam" },
           { $ref: "#/components/parameters/TournamentIdParam" },
           { $ref: "#/components/parameters/PopulationParam" },
-       { $ref: "#/components/parameters/AthleteIdParam" },
+          { $ref: "#/components/parameters/AthleteIdParam" },
         ],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
@@ -369,73 +273,48 @@ export const openapiSpec: OpenAPIObject = {
           { $ref: "#/components/parameters/PopulationParam" },
         ],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
-            },
-          },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
-    // NEW: /competition/video
+
     "/api/v1/trends/video": {
       get: {
         tags: ["Trends"],
         summary: "Get selected competition videos",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
-
-          {
-            name: "selected_row",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          },
-          {
-            name: "source",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          },
-          {
-            name: "camera",
-            in: "query",
-            schema: { type: "string" },
-            required: true,
-          }
+          { name: "selected_row", in: "query", schema: { type: "string" }, required: true },
+          { name: "source", in: "query", schema: { type: "string" }, required: true },
+          { name: "camera", in: "query", schema: { type: "string" }, required: true },
         ],
         responses: {
-          "200": {
-            description: "OK",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } },
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+    "/api/v1/trends/win-percentage": {
+      post: {
+        tags: ["Trends"],
+        summary: "Get win percentage for a set of players",
+        security: [{ ApiKeyAuth: [] }],
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: { $ref: "#/components/schemas/TrendsGetWinPercentageRequest" },
             },
           },
-          "400": {
-            description: "Bad Request",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
-          "401": {
-            description: "Unauthorized",
-            content: {
-              "application/json": { schema: { $ref: "#/components/schemas/ApiError" } },
-            },
-          },
+        },
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
         },
       },
     },
