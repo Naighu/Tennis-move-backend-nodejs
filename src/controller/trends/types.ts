@@ -65,6 +65,18 @@ export interface TrendsTopPlayersBody {
   ranking_bracket?: RankingBracketKey;
 }
 
+
+
+export interface TrendsDistributionBody {
+  table: TableKey;
+  year: number;
+  feature: FeatureKey;
+  filter_feature: FilterKey;
+  lower_value: number;
+  upper_value: number;
+  pop: string;
+}
+
 export interface TrendsGetVideoBody {
   selected_row: string;
   source: string;

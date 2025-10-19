@@ -26,6 +26,21 @@ export const TrendsTopPlayersBodySchema : SchemaObject= {
   }
 } as const;
 
+export const TrendsDistributionBodySchema : SchemaObject= {
+  type: "object",
+  additionalProperties: false,
+  required: ["table","year","feature","filter_feature","lower_value","upper_value","pop"],
+  properties: {
+    table:          { type: "string", enum: tableEnum },
+    year:           { type: "integer", minimum: 1900, maximum: 2100 },
+    feature:        { type: "string", enum: featureEnum },
+    filter_feature: { type: "string", enum: filterEnum },
+    lower_value:    { type: "number" },
+    upper_value:    { type: "number" },
+    pop:            { type: "string", enum: populationEnum },
+  }
+} as const;
+
 
 export const TrendsGetVideoBodySchema: SchemaObject = {
     type: "object",

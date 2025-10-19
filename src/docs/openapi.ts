@@ -280,6 +280,30 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
+
+     "/api/v1/trends/distribution": {
+      get: {
+        tags: ["Trends"],
+        summary: "Top rows by feature",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          { $ref: "#/components/parameters/TableParam" },
+          { $ref: "#/components/parameters/YearParam" },
+          { $ref: "#/components/parameters/RankingBracketParam" },
+          { $ref: "#/components/parameters/FeatureParam" },
+          { $ref: "#/components/parameters/FilterFeatureParam" },
+          { $ref: "#/components/parameters/LowerValueParam" },
+          { $ref: "#/components/parameters/UpperValueParam" },
+          { $ref: "#/components/parameters/PopulationParam" },
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
     "/api/v1/trends/video": {
       get: {
         tags: ["Trends"],
