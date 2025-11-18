@@ -49,7 +49,7 @@ export async function getAthletes(req: Request, res: Response) {
 
     const body = req.query as unknown as CompetetitionGetAtheletesBody;
     const sql = loadSql("competition/list_athletes.sql");
-    const params = [body.year, body.tid, body.pop];
+    const params = [body.year,body.pop];
     const { rows } = await query(sql, params).catch((err) => {
       throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
     });
@@ -68,7 +68,7 @@ export async function getMatchIds(req: Request, res: Response) {
   try {
     const body = req.query as unknown as CompetetitionGetMatchIdsBody;;
     const sql = loadSql("competition/list_rounds.sql");
-    const params = [body.year, body.tid, body.pop, body.player_id];
+    const params = [body.year, body.pop, body.player_id];
     const { rows } = await query(sql, params).catch((err) => {
       throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
     });

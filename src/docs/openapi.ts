@@ -190,7 +190,6 @@ export const openapiSpec: OpenAPIObject = {
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
           { $ref: "#/components/parameters/PopulationParam" },
         ],
         responses: {
@@ -245,7 +244,6 @@ export const openapiSpec: OpenAPIObject = {
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
           { $ref: "#/components/parameters/PopulationParam" },
           { $ref: "#/components/parameters/AthleteIdParam" },
         ],

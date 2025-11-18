@@ -10,7 +10,6 @@ FROM (
     FROM competition_matches
     CROSS JOIN LATERAL jsonb_array_elements(player_ids) AS elem
     WHERE year = $1
-      AND tournament_id = $2
-      AND population_id = $3
+      AND population_id = $2
 ) AS sub
-WHERE sub.player_id = $4;
+WHERE sub.player_id = $3;

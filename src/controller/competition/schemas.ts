@@ -7,11 +7,10 @@ import { populationEnum } from "../../types";
 export const competitionGetAtheletesBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["year", "tid", "pop"],
+    required: ["year", "pop"],
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
-        tid: { type: "string" },
         pop: { type: "string", enum: populationEnum },
 
     }
@@ -24,11 +23,10 @@ export const competitionGetAtheletesBodySchema: SchemaObject = {
 export const competitionGetMatchIdsBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["year", "tid", "pop", "player_id"],
+    required: ["year", "pop", "player_id"],
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
-        tid: { type: "string" },
         pop: { type: "string", enum: populationEnum },
         player_id: { type: "string" },
 
