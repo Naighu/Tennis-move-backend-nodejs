@@ -191,6 +191,8 @@ export const openapiSpec: OpenAPIObject = {
         parameters: [
           { $ref: "#/components/parameters/YearParam" },
           { $ref: "#/components/parameters/PopulationParam" },
+          { $ref: "#/components/parameters/TournamentIdParam" },
+
         ],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
@@ -246,6 +248,8 @@ export const openapiSpec: OpenAPIObject = {
           { $ref: "#/components/parameters/YearParam" },
           { $ref: "#/components/parameters/PopulationParam" },
           { $ref: "#/components/parameters/AthleteIdParam" },
+          { $ref: "#/components/parameters/TournamentIdParam" },
+
         ],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },

@@ -1,11 +1,13 @@
 export interface CompetetitionGetAtheletesBody {
   year: number;
   pop: string;
+  tid: number;
 }
 export interface CompetetitionGetMatchIdsBody {
   year: number;
   pop: string;
   player_id: string;
+  tid: number;
 }
 
 export interface CompetetitionGetTableDataBody {

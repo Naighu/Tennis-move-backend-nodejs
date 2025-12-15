@@ -12,11 +12,13 @@ import { Bucket } from "../../types/bucket.type";
 
 export async function getSelectors(req: Request, res: Response) {
   try {
-    const sql = loadSql("trends/fetch_selectors.sql");
+    const sql = loadSql("competition/list_selectors.sql");
     const { rows } = await query(sql).catch((err) => {
       throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
     });
     const out = rows.map(r => r.result);
+    console.log(out);
+    
     if (out.length == 0) {
       return sendOk(res, []);
     } else {
@@ -49,7 +51,7 @@ export async function getAthletes(req: Request, res: Response) {
 
     const body = req.query as unknown as CompetetitionGetAtheletesBody;
     const sql = loadSql("competition/list_athletes.sql");
-    const params = [body.year,body.pop];
+    const params = [body.year,body.tid,body.pop];
     const { rows } = await query(sql, params).catch((err) => {
       throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
     });
@@ -68,7 +70,7 @@ export async function getMatchIds(req: Request, res: Response) {
   try {
     const body = req.query as unknown as CompetetitionGetMatchIdsBody;;
     const sql = loadSql("competition/list_rounds.sql");
-    const params = [body.year, body.pop, body.player_id];
+    const params = [body.year,body.tid, body.pop, body.player_id];
     const { rows } = await query(sql, params).catch((err) => {
       throw new AppError("DB_ERROR", err, undefined);; // Re-throw the error after logging it
     });
