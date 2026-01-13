@@ -1,0 +1,2722 @@
+{
+    "Men's Singles": {
+        "Jannik Sinner (ITA)": {
+            "player_id": "ATPS0AG",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "3rd Round": "2025_580_MS301",
+                        "4th Round": "2025_580_MS401",
+                        "1st Round": "2025_580_MS101",
+                        "2nd Round": "2025_580_MS201"
+                    }
+                }
+            }
+        },
+        "Marcos Giron (USA)": {
+            "player_id": "ATPGC88",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "3rd Round": "2025_580_MS301",
+                        "1st Round": "2025_580_MS103",
+                        "2nd Round": "2025_580_MS202"
+                    }
+                }
+            }
+        },
+        "Holger Rune (DEN)": {
+            "player_id": "ATPR0DG",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "4th Round": "2025_580_MS401",
+                        "1st Round": "2025_580_MS108",
+                        "2nd Round": "2025_580_MS204",
+                        "3rd Round": "2025_580_MS302"
+                    }
+                }
+            }
+        },
+        "Tristan Schoolkate (AUS)": {
+            "player_id": "ATPS0N0",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS102",
+                        "2nd Round": "2025_580_MS201"
+                    }
+                }
+            }
+        },
+        "Taro Daniel (JPN)": {
+            "player_id": "ATPDA81",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS102"
+                    }
+                }
+            }
+        },
+        "Nicolas Jarry (CHI)": {
+            "player_id": "ATPJ551",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS101"
+                    }
+                }
+            }
+        },
+        "Yannick Hanfmann (GER)": {
+            "player_id": "ATPH997",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS103"
+                    }
+                }
+            }
+        },
+        "Tomas Martin Etcheverry (ARG)": {
+            "player_id": "ATPEA24",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS104",
+                        "2nd Round": "2025_580_MS202"
+                    }
+                }
+            }
+        },
+        "Flavio Cobolli (ITA)": {
+            "player_id": "ATPC0E9",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS104"
+                    }
+                }
+            }
+        },
+        "Hubert Hurkacz (POL)": {
+            "player_id": "ATPHB71",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS105",
+                        "2nd Round": "2025_580_MS203"
+                    }
+                }
+            }
+        },
+        "Tallon Griekspoor (NED)": {
+            "player_id": "ATPGJ37",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS105"
+                    }
+                }
+            }
+        },
+        "Miomir Kecmanovic (SRB)": {
+            "player_id": "ATPKI95",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS106",
+                        "2nd Round": "2025_580_MS203",
+                        "3rd Round": "2025_580_MS302"
+                    }
+                }
+            }
+        },
+        "Dusan Lajovic (SRB)": {
+            "player_id": "ATPL987",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS106"
+                    }
+                }
+            }
+        },
+        "Matteo Berrettini (ITA)": {
+            "player_id": "ATPBK40",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS107",
+                        "2nd Round": "2025_580_MS204"
+                    }
+                }
+            }
+        },
+        "Cameron Norrie (GBR)": {
+            "player_id": "ATPN771",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS107"
+                    }
+                }
+            }
+        },
+        "Zhizhen Zhang (CHN)": {
+            "player_id": "ATPZ371",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS108"
+                    }
+                }
+            }
+        },
+        "Stefanos Tsitsipas (GRE)": {
+            "player_id": "ATPTE51",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS109"
+                    }
+                }
+            }
+        },
+        "Alex Michelsen (USA)": {
+            "player_id": "ATPM0QI",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS109",
+                        "2nd Round": "2025_580_MS205",
+                        "3rd Round": "2025_580_MS303",
+                        "4th Round": "2025_580_MS402"
+                    }
+                }
+            }
+        },
+        "James McCabe (AUS)": {
+            "player_id": "ATPM0OQ",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS110",
+                        "2nd Round": "2025_580_MS205"
+                    }
+                }
+            }
+        },
+        "Martin Landaluce (ESP)": {
+            "player_id": "ATPL0IL",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS110"
+                    }
+                }
+            }
+        },
+        "Gabriel Diallo (CAN)": {
+            "player_id": "ATPD0F6",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS111",
+                        "2nd Round": "2025_580_MS206"
+                    }
+                }
+            }
+        },
+        "Luca Nardi (ITA)": {
+            "player_id": "ATPN0BG",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS111"
+                    }
+                }
+            }
+        },
+        "Adrian Mannarino (FRA)": {
+            "player_id": "ATPME82",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS112"
+                    }
+                }
+            }
+        },
+        "Karen Khachanov (RUS)": {
+            "player_id": "ATPKE29",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS112",
+                        "2nd Round": "2025_580_MS206",
+                        "3rd Round": "2025_580_MS303"
+                    }
+                }
+            }
+        },
+        "Francisco Cerundolo (ARG)": {
+            "player_id": "ATPC0AU",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS113",
+                        "2nd Round": "2025_580_MS207",
+                        "3rd Round": "2025_580_MS304"
+                    }
+                }
+            }
+        },
+        "Alexander Bublik (KAZ)": {
+            "player_id": "ATPBK92",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS113"
+                    }
+                }
+            }
+        },
+        "Facundo Diaz Acosta (ARG)": {
+            "player_id": "ATPD0CG",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS114",
+                        "2nd Round": "2025_580_MS207"
+                    }
+                }
+            }
+        },
+        "Zizou Bergs (BEL)": {
+            "player_id": "ATPBU13",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS114"
+                    }
+                }
+            }
+        },
+        "Tristan Boyer (USA)": {
+            "player_id": "ATPB0EJ",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS115",
+                        "2nd Round": "2025_580_MS208"
+                    }
+                }
+            }
+        },
+        "Federico Coria (ARG)": {
+            "player_id": "ATPCE77",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS115"
+                    }
+                }
+            }
+        },
+        "Botic van de Zandschulp (NED)": {
+            "player_id": "ATPV812",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS116"
+                    }
+                }
+            }
+        },
+        "Alex de Minaur (AUS)": {
+            "player_id": "ATPDH58",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS116",
+                        "2nd Round": "2025_580_MS208",
+                        "3rd Round": "2025_580_MS304",
+                        "4th Round": "2025_580_MS402"
+                    }
+                }
+            }
+        },
+        "Taylor Fritz (USA)": {
+            "player_id": "ATPFB98",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS117",
+                        "2nd Round": "2025_580_MS209",
+                        "3rd Round": "2025_580_MS305"
+                    }
+                }
+            }
+        },
+        "Jenson Brooksby (USA)": {
+            "player_id": "ATPB0CD",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS117"
+                    }
+                }
+            }
+        },
+        "Borna Coric (CRO)": {
+            "player_id": "ATPCG80",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS118"
+                    }
+                }
+            }
+        },
+        "Cristian Garin (CHI)": {
+            "player_id": "ATPGD64",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS118",
+                        "2nd Round": "2025_580_MS209"
+                    }
+                }
+            }
+        },
+        "Francisco Comesana (ARG)": {
+            "player_id": "ATPC0DF",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS119"
+                    }
+                }
+            }
+        },
+        "Daniel Altmaier (GER)": {
+            "player_id": "ATPAE14",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS119",
+                        "2nd Round": "2025_580_MS210"
+                    }
+                }
+            }
+        },
+        "Gael Monfils (FRA)": {
+            "player_id": "ATPMC65",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS120",
+                        "2nd Round": "2025_580_MS210",
+                        "3rd Round": "2025_580_MS305",
+                        "4th Round": "2025_580_MS403"
+                    }
+                }
+            }
+        },
+        "Giovanni Mpetshi Perricard (FRA)": {
+            "player_id": "ATPM0GZ",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS120"
+                    }
+                }
+            }
+        },
+        "Ben Shelton (USA)": {
+            "player_id": "ATPS0S1",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS121",
+                        "2nd Round": "2025_580_MS211",
+                        "3rd Round": "2025_580_MS306",
+                        "4th Round": "2025_580_MS403"
+                    }
+                }
+            }
+        },
+        "Brandon Nakashima (USA)": {
+            "player_id": "ATPN0AE",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS121"
+                    }
+                }
+            }
+        },
+        "Pablo Carreno Busta (ESP)": {
+            "player_id": "ATPCD85",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS122",
+                        "2nd Round": "2025_580_MS211"
+                    }
+                }
+            }
+        },
+        "Kamil Majchrzak (POL)": {
+            "player_id": "ATPMQ75",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS122"
+                    }
+                }
+            }
+        },
+        "Roberto Bautista Agut (ESP)": {
+            "player_id": "ATPBD06",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS123"
+                    }
+                }
+            }
+        },
+        "Denis Shapovalov (CAN)": {
+            "player_id": "ATPSU55",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS123",
+                        "2nd Round": "2025_580_MS212"
+                    }
+                }
+            }
+        },
+        "Matteo Arnaldi (ITA)": {
+            "player_id": "ATPA0FC",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS124"
+                    }
+                }
+            }
+        },
+        "Lorenzo Musetti (ITA)": {
+            "player_id": "ATPM0EJ",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS124",
+                        "2nd Round": "2025_580_MS212",
+                        "3rd Round": "2025_580_MS306"
+                    }
+                }
+            }
+        },
+        "Andrey Rublev (RUS)": {
+            "player_id": "ATPRE44",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS125"
+                    }
+                }
+            }
+        },
+        "Joao Fonseca (BRA)": {
+            "player_id": "ATPF0FV",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS125",
+                        "2nd Round": "2025_580_MS213"
+                    }
+                }
+            }
+        },
+        "Lorenzo Sonego (ITA)": {
+            "player_id": "ATPSU87",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS126",
+                        "2nd Round": "2025_580_MS213",
+                        "3rd Round": "2025_580_MS307",
+                        "4th Round": "2025_580_MS404"
+                    }
+                }
+            }
+        },
+        "Stan Wawrinka (SUI)": {
+            "player_id": "ATPW367",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS126"
+                    }
+                }
+            }
+        },
+        "Thiago Seyboth Wild (BRA)": {
+            "player_id": "ATPSX91",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS127"
+                    }
+                }
+            }
+        },
+        "Fabian Marozsan (HUN)": {
+            "player_id": "ATPM0CI",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS127",
+                        "2nd Round": "2025_580_MS214",
+                        "3rd Round": "2025_580_MS307"
+                    }
+                }
+            }
+        },
+        "Arthur Rinderknech (FRA)": {
+            "player_id": "ATPRC91",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS128"
+                    }
+                }
+            }
+        },
+        "Frances Tiafoe (USA)": {
+            "player_id": "ATPTD51",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS128",
+                        "2nd Round": "2025_580_MS214"
+                    }
+                }
+            }
+        },
+        "Alexei Popyrin (AUS)": {
+            "player_id": "ATPP09Z",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS129"
+                    }
+                }
+            }
+        },
+        "Corentin Moutet (FRA)": {
+            "player_id": "ATPMW02",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS129",
+                        "2nd Round": "2025_580_MS215",
+                        "3rd Round": "2025_580_MS308"
+                    }
+                }
+            }
+        },
+        "Rinky Hijikata (AUS)": {
+            "player_id": "ATPH0BH",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS130"
+                    }
+                }
+            }
+        },
+        "Mitchell Krueger (USA)": {
+            "player_id": "ATPKC12",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS130",
+                        "2nd Round": "2025_580_MS215"
+                    }
+                }
+            }
+        },
+        "Camilo Ugo Carabelli (ARG)": {
+            "player_id": "ATPU182",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS131"
+                    }
+                }
+            }
+        },
+        "Learner Tien (USA)": {
+            "player_id": "ATPT0HA",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS131",
+                        "2nd Round": "2025_580_MS216",
+                        "3rd Round": "2025_580_MS308",
+                        "4th Round": "2025_580_MS404"
+                    }
+                }
+            }
+        },
+        "Kasidit Samrej (THA)": {
+            "player_id": "ATPS0HR",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS132"
+                    }
+                }
+            }
+        },
+        "Daniil Medvedev (RUS)": {
+            "player_id": "ATPMM58",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS132",
+                        "2nd Round": "2025_580_MS216"
+                    }
+                }
+            }
+        },
+        "Novak Djokovic (SRB)": {
+            "player_id": "ATPD643",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS133",
+                        "2nd Round": "2025_580_MS217",
+                        "3rd Round": "2025_580_MS309",
+                        "4th Round": "2025_580_MS405"
+                    }
+                }
+            }
+        },
+        "Nishesh Basavareddy (USA)": {
+            "player_id": "ATPB0NN",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS133"
+                    }
+                }
+            }
+        },
+        "Jaime Faria (POR)": {
+            "player_id": "ATPF0F2",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS134",
+                        "2nd Round": "2025_580_MS217"
+                    }
+                }
+            }
+        },
+        "Pavel Kotov (RUS)": {
+            "player_id": "ATPK09F",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS134"
+                    }
+                }
+            }
+        },
+        "Gauthier Onclin (BEL)": {
+            "player_id": "ATPO0A2",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS135"
+                    }
+                }
+            }
+        },
+        "Reilly Opelka (USA)": {
+            "player_id": "ATPO522",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS135",
+                        "2nd Round": "2025_580_MS218"
+                    }
+                }
+            }
+        },
+        "Sumit Nagal (IND)": {
+            "player_id": "ATPN897",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS136"
+                    }
+                }
+            }
+        },
+        "Tomas Machac (CZE)": {
+            "player_id": "ATPM0FH",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS136",
+                        "2nd Round": "2025_580_MS218",
+                        "3rd Round": "2025_580_MS309"
+                    }
+                }
+            }
+        },
+        "Jiri Lehecka (CZE)": {
+            "player_id": "ATPL0BV",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS137",
+                        "2nd Round": "2025_580_MS219",
+                        "3rd Round": "2025_580_MS310",
+                        "4th Round": "2025_580_MS405"
+                    }
+                }
+            }
+        },
+        "Li Tu (AUS)": {
+            "player_id": "ATPTC01",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS137"
+                    }
+                }
+            }
+        },
+        "Hugo Gaston (FRA)": {
+            "player_id": "ATPG09O",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS138",
+                        "2nd Round": "2025_580_MS219"
+                    }
+                }
+            }
+        },
+        "Omar Jasika (AUS)": {
+            "player_id": "ATPJ553",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS138"
+                    }
+                }
+            }
+        },
+        "David Goffin (BEL)": {
+            "player_id": "ATPGB88",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS139"
+                    }
+                }
+            }
+        },
+        "Benjamin Bonzi (FRA)": {
+            "player_id": "ATPBM95",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS139",
+                        "2nd Round": "2025_580_MS220",
+                        "3rd Round": "2025_580_MS310"
+                    }
+                }
+            }
+        },
+        "Francesco Passaro (ITA)": {
+            "player_id": "ATPP0CT",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS140",
+                        "2nd Round": "2025_580_MS220"
+                    }
+                }
+            }
+        },
+        "Grigor Dimitrov (BUL)": {
+            "player_id": "ATPD875",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS140"
+                    }
+                }
+            }
+        },
+        "Jack Draper (GBR)": {
+            "player_id": "ATPD0CO",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS141",
+                        "2nd Round": "2025_580_MS221",
+                        "3rd Round": "2025_580_MS311",
+                        "4th Round": "2025_580_MS406"
+                    }
+                }
+            }
+        },
+        "Mariano Navone (ARG)": {
+            "player_id": "ATPN0BS",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS141"
+                    }
+                }
+            }
+        },
+        "Thanasi Kokkinakis (AUS)": {
+            "player_id": "ATPKD46",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS142",
+                        "2nd Round": "2025_580_MS221"
+                    }
+                }
+            }
+        },
+        "Roman Safiullin (RUS)": {
+            "player_id": "ATPSX50",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS142"
+                    }
+                }
+            }
+        },
+        "Damir Dzumhur (BIH)": {
+            "player_id": "ATPD923",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS143"
+                    }
+                }
+            }
+        },
+        "Aleksandar Vukic (AUS)": {
+            "player_id": "ATPV832",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS143",
+                        "2nd Round": "2025_580_MS222",
+                        "3rd Round": "2025_580_MS311"
+                    }
+                }
+            }
+        },
+        "Lukas Klein (SVK)": {
+            "player_id": "ATPKI63",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS144"
+                    }
+                }
+            }
+        },
+        "Sebastian Korda (USA)": {
+            "player_id": "ATPK0AH",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS144",
+                        "2nd Round": "2025_580_MS222"
+                    }
+                }
+            }
+        },
+        "Jordan Thompson (AUS)": {
+            "player_id": "ATPTC61",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS145",
+                        "2nd Round": "2025_580_MS223"
+                    }
+                }
+            }
+        },
+        "Dominik Koepfer (GER)": {
+            "player_id": "ATPKE73",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS145"
+                    }
+                }
+            }
+        },
+        "Alexandre Muller (FRA)": {
+            "player_id": "ATPMP20",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS146"
+                    }
+                }
+            }
+        },
+        "Nuno Borges (POR)": {
+            "player_id": "ATPBT72",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS146",
+                        "2nd Round": "2025_580_MS223",
+                        "3rd Round": "2025_580_MS312"
+                    }
+                }
+            }
+        },
+        "Yoshihito Nishioka (JPN)": {
+            "player_id": "ATPN732",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS147",
+                        "2nd Round": "2025_580_MS224"
+                    }
+                }
+            }
+        },
+        "Aziz Dougaz (TUN)": {
+            "player_id": "ATPDF88",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS147"
+                    }
+                }
+            }
+        },
+        "Alexander Shevchenko (KAZ)": {
+            "player_id": "ATPS0H2",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS148"
+                    }
+                }
+            }
+        },
+        "Carlos Alcaraz (ESP)": {
+            "player_id": "ATPA0E2",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS148",
+                        "2nd Round": "2025_580_MS224",
+                        "3rd Round": "2025_580_MS312",
+                        "4th Round": "2025_580_MS406"
+                    }
+                }
+            }
+        },
+        "Casper Ruud (NOR)": {
+            "player_id": "ATPRH16",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS149",
+                        "2nd Round": "2025_580_MS225"
+                    }
+                }
+            }
+        },
+        "Jaume Munar (ESP)": {
+            "player_id": "ATPMU94",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS149"
+                    }
+                }
+            }
+        },
+        "Nikoloz Basilashvili (GEO)": {
+            "player_id": "ATPBG23",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS150"
+                    }
+                }
+            }
+        },
+        "Jakub Mensik (CZE)": {
+            "player_id": "ATPM0NI",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS150",
+                        "2nd Round": "2025_580_MS225",
+                        "3rd Round": "2025_580_MS313"
+                    }
+                }
+            }
+        },
+        "Juncheng Shang (CHN)": {
+            "player_id": "ATPS0RE",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS151"
+                    }
+                }
+            }
+        },
+        "Alejandro Davidovich Fokina (ESP)": {
+            "player_id": "ATPDH50",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS151",
+                        "2nd Round": "2025_580_MS226",
+                        "3rd Round": "2025_580_MS313",
+                        "4th Round": "2025_580_MS407"
+                    }
+                }
+            }
+        },
+        "Jan-Lennard Struff (GER)": {
+            "player_id": "ATPSL28",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS152"
+                    }
+                }
+            }
+        },
+        "Felix Auger-Aliassime (CAN)": {
+            "player_id": "ATPAG37",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS152",
+                        "2nd Round": "2025_580_MS226"
+                    }
+                }
+            }
+        },
+        "Alejandro Tabilo (CHI)": {
+            "player_id": "ATPTE30",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS153"
+                    }
+                }
+            }
+        },
+        "Roberto Carballes Baena (ESP)": {
+            "player_id": "ATPCF59",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS153",
+                        "2nd Round": "2025_580_MS227",
+                        "3rd Round": "2025_580_MS314"
+                    }
+                }
+            }
+        },
+        "James Duckworth (AUS)": {
+            "player_id": "ATPD994",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS154",
+                        "2nd Round": "2025_580_MS227"
+                    }
+                }
+            }
+        },
+        "Dominic Stricker (SUI)": {
+            "player_id": "ATPS0LA",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS154"
+                    }
+                }
+            }
+        },
+        "Kei Nishikori (JPN)": {
+            "player_id": "ATPN552",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS155",
+                        "2nd Round": "2025_580_MS228"
+                    }
+                }
+            }
+        },
+        "Thiago Monteiro (BRA)": {
+            "player_id": "ATPMJ08",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS155"
+                    }
+                }
+            }
+        },
+        "Adam Walton (AUS)": {
+            "player_id": "ATPW09E",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS159"
+                    }
+                }
+            }
+        },
+        "Quentin Halys (FRA)": {
+            "player_id": "ATPHB64",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS159",
+                        "2nd Round": "2025_580_MS230"
+                    }
+                }
+            }
+        },
+        "Otto Virtanen (FIN)": {
+            "player_id": "ATPV0AM",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS160"
+                    }
+                }
+            }
+        },
+        "Arthur Fils (FRA)": {
+            "player_id": "ATPF0F1",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS160",
+                        "2nd Round": "2025_580_MS230",
+                        "3rd Round": "2025_580_MS315"
+                    }
+                }
+            }
+        },
+        "Sebastian Baez (ARG)": {
+            "player_id": "ATPB0BI",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS161"
+                    }
+                }
+            }
+        },
+        "Arthur Cazaux (FRA)": {
+            "player_id": "ATPC0H0",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS161",
+                        "2nd Round": "2025_580_MS231"
+                    }
+                }
+            }
+        },
+        "Jacob Fearnley (GBR)": {
+            "player_id": "ATPF0BY",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS162",
+                        "2nd Round": "2025_580_MS231",
+                        "3rd Round": "2025_580_MS316"
+                    }
+                }
+            }
+        },
+        "Nick Kyrgios (AUS)": {
+            "player_id": "ATPKE17",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS162"
+                    }
+                }
+            }
+        },
+        "Pedro Martinez (ESP)": {
+            "player_id": "ATPMO44",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS163",
+                        "2nd Round": "2025_580_MS232"
+                    }
+                }
+            }
+        },
+        "Luciano Darderi (ITA)": {
+            "player_id": "ATPD0FJ",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS163"
+                    }
+                }
+            }
+        },
+        "Lucas Pouille (FRA)": {
+            "player_id": "ATPPF39",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS164"
+                    }
+                }
+            }
+        },
+        "Alexander Zverev (GER)": {
+            "player_id": "ATPZ355",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_580_MS164",
+                        "2nd Round": "2025_580_MS232",
+                        "3rd Round": "2025_580_MS316",
+                        "4th Round": "2025_580_MS408"
+                    }
+                }
+            }
+        },
+        "Tommy Paul (USA)": {
+            "player_id": "ATPPL56",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "2nd Round": "2025_580_MS228",
+                        "3rd Round": "2025_580_MS314",
+                        "4th Round": "2025_580_MS407"
+                    }
+                }
+            }
+        },
+        "Ugo Humbert (FRA)": {
+            "player_id": "ATPHH26",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "2nd Round": "2025_580_MS229",
+                        "3rd Round": "2025_580_MS315",
+                        "4th Round": "2025_580_MS408"
+                    }
+                }
+            }
+        },
+        "Hady Habib (LBN)": {
+            "player_id": "ATPHF80",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "2nd Round": "2025_580_MS229"
+                    }
+                }
+            }
+        }
+    },
+    "Women's Singles": {
+        "Aryna Sabalenka (BLR)": {
+            "player_id": "WTA320760",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "Semifinals": "2025_901_WS601",
+                        "Final": "2025_901_WS701",
+                        "1st Round": "2025_901_WS101",
+                        "2nd Round": "2025_901_WS201",
+                        "3rd Round": "2025_901_WS301",
+                        "4th Round": "2025_901_WS401"
+                    }
+                }
+            }
+        },
+        "Paula Badosa (ESP)": {
+            "player_id": "WTA320124",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "Semifinals": "2025_901_WS601",
+                        "1st Round": "2025_901_WS125",
+                        "2nd Round": "2025_901_WS213",
+                        "3rd Round": "2025_901_WS307",
+                        "4th Round": "2025_901_WS404"
+                    }
+                }
+            }
+        },
+        "Madison Keys (USA)": {
+            "player_id": "WTA316959",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "Final": "2025_901_WS701",
+                        "1st Round": "2025_901_WS137",
+                        "2nd Round": "2025_901_WS219",
+                        "3rd Round": "2025_901_WS310",
+                        "4th Round": "2025_901_WS405"
+                    }
+                }
+            }
+        },
+        "Sloane Stephens (USA)": {
+            "player_id": "WTA315683",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS101"
+                    }
+                }
+            }
+        },
+        "Sonay Kartal (GBR)": {
+            "player_id": "WTA329918",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS102"
+                    }
+                }
+            }
+        },
+        "Jessica Bouzas Maneiro (ESP)": {
+            "player_id": "WTA328139",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS102",
+                        "2nd Round": "2025_901_WS201"
+                    }
+                }
+            }
+        },
+        "Bernarda Pera (USA)": {
+            "player_id": "WTA317708",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS103"
+                    }
+                }
+            }
+        },
+        "Tatjana Maria (GER)": {
+            "player_id": "WTA310440",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS103",
+                        "2nd Round": "2025_901_WS202"
+                    }
+                }
+            }
+        },
+        "Clara Tauson (DEN)": {
+            "player_id": "WTA327793",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS104",
+                        "2nd Round": "2025_901_WS202",
+                        "3rd Round": "2025_901_WS301"
+                    }
+                }
+            }
+        },
+        "Linda Noskova (CZE)": {
+            "player_id": "WTA329668",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS104"
+                    }
+                }
+            }
+        },
+        "Magdalena Frech (POL)": {
+            "player_id": "WTA320277",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS105",
+                        "2nd Round": "2025_901_WS203",
+                        "3rd Round": "2025_901_WS302"
+                    }
+                }
+            }
+        },
+        "Polina Kudermetova (RUS)": {
+            "player_id": "WTA328897",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS105"
+                    }
+                }
+            }
+        },
+        "Anna Blinkova (RUS)": {
+            "player_id": "WTA324267",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS106",
+                        "2nd Round": "2025_901_WS203"
+                    }
+                }
+            }
+        },
+        "Daria Saville (AUS)": {
+            "player_id": "WTA315997",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS106"
+                    }
+                }
+            }
+        },
+        "Moyuka Uchijima (JPN)": {
+            "player_id": "WTA327241",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS107",
+                        "2nd Round": "2025_901_WS204"
+                    }
+                }
+            }
+        },
+        "Magda Linette (POL)": {
+            "player_id": "WTA315130",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS107"
+                    }
+                }
+            }
+        },
+        "Marie Bouzkova (CZE)": {
+            "player_id": "WTA320983",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS108"
+                    }
+                }
+            }
+        },
+        "Mirra Andreeva (RUS)": {
+            "player_id": "WTA331809",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS108",
+                        "2nd Round": "2025_901_WS204",
+                        "3rd Round": "2025_901_WS302",
+                        "4th Round": "2025_901_WS401"
+                    }
+                }
+            }
+        },
+        "Diana Shnaider (RUS)": {
+            "player_id": "WTA330482",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS109",
+                        "2nd Round": "2025_901_WS205",
+                        "3rd Round": "2025_901_WS303"
+                    }
+                }
+            }
+        },
+        "Elisabetta Cocciaretto (ITA)": {
+            "player_id": "WTA327909",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS109"
+                    }
+                }
+            }
+        },
+        "Ajla Tomljanovic (AUS)": {
+            "player_id": "WTA315232",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS110",
+                        "2nd Round": "2025_901_WS205"
+                    }
+                }
+            }
+        },
+        "Ashlyn Krueger (USA)": {
+            "player_id": "WTA329409",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS110"
+                    }
+                }
+            }
+        },
+        "Harriet Dart (GBR)": {
+            "player_id": "WTA319489",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS111",
+                        "2nd Round": "2025_901_WS206"
+                    }
+                }
+            }
+        },
+        "Jana Fett (CRO)": {
+            "player_id": "WTA320945",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS111"
+                    }
+                }
+            }
+        },
+        "Diane Parry (FRA)": {
+            "player_id": "WTA327077",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS112"
+                    }
+                }
+            }
+        },
+        "Donna Vekic (CRO)": {
+            "player_id": "WTA318516",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS112",
+                        "2nd Round": "2025_901_WS206",
+                        "3rd Round": "2025_901_WS303",
+                        "4th Round": "2025_901_WS402"
+                    }
+                }
+            }
+        },
+        "Anastasia Pavlyuchenkova (RUS)": {
+            "player_id": "WTA313796",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS113",
+                        "2nd Round": "2025_901_WS207",
+                        "3rd Round": "2025_901_WS304",
+                        "4th Round": "2025_901_WS402"
+                    }
+                }
+            }
+        },
+        "Yue Yuan (CHN)": {
+            "player_id": "WTA324325",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS113"
+                    }
+                }
+            }
+        },
+        "Tamara Zidansek (SLO)": {
+            "player_id": "WTA323079",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS114"
+                    }
+                }
+            }
+        },
+        "Anastasia Potapova (RUS)": {
+            "player_id": "WTA325601",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS114",
+                        "2nd Round": "2025_901_WS207"
+                    }
+                }
+            }
+        },
+        "Anca Todoni (ROU)": {
+            "player_id": "WTA330442",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS116"
+                    }
+                }
+            }
+        },
+        "Qinwen Zheng (CHN)": {
+            "player_id": "WTA328120",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS116",
+                        "2nd Round": "2025_901_WS208"
+                    }
+                }
+            }
+        },
+        "Leolia Jeanjean (FRA)": {
+            "player_id": "WTA320313",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS118"
+                    }
+                }
+            }
+        },
+        "Jodie Burrage (GBR)": {
+            "player_id": "WTA323802",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS118",
+                        "2nd Round": "2025_901_WS209"
+                    }
+                }
+            }
+        },
+        "Cristina Bucsa (ESP)": {
+            "player_id": "WTA321158",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS119",
+                        "2nd Round": "2025_901_WS210"
+                    }
+                }
+            }
+        },
+        "Chloe Paquet (FRA)": {
+            "player_id": "WTA318839",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS119"
+                    }
+                }
+            }
+        },
+        "Yuliia Starodubtseva (UKR)": {
+            "player_id": "WTA325338",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS120"
+                    }
+                }
+            }
+        },
+        "Leylah Fernandez (CAN)": {
+            "player_id": "WTA326735",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS120",
+                        "2nd Round": "2025_901_WS210",
+                        "3rd Round": "2025_901_WS305"
+                    }
+                }
+            }
+        },
+        "Karolina Muchova (CZE)": {
+            "player_id": "WTA322191",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS121",
+                        "2nd Round": "2025_901_WS211"
+                    }
+                }
+            }
+        },
+        "Nadia Podoroska (ARG)": {
+            "player_id": "WTA319112",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS121"
+                    }
+                }
+            }
+        },
+        "Naomi Osaka (JPN)": {
+            "player_id": "WTA319998",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS122",
+                        "2nd Round": "2025_901_WS211",
+                        "3rd Round": "2025_901_WS306"
+                    }
+                }
+            }
+        },
+        "Caroline Garcia (FRA)": {
+            "player_id": "WTA315391",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS122"
+                    }
+                }
+            }
+        },
+        "Veronika Erjavec (SLO)": {
+            "player_id": "WTA327655",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS123"
+                    }
+                }
+            }
+        },
+        "Suzan Lamens (NED)": {
+            "player_id": "WTA324898",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS123",
+                        "2nd Round": "2025_901_WS212"
+                    }
+                }
+            }
+        },
+        "Belinda Bencic (SUI)": {
+            "player_id": "WTA319001",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS124",
+                        "2nd Round": "2025_901_WS212",
+                        "3rd Round": "2025_901_WS306"
+                    }
+                }
+            }
+        },
+        "Jelena Ostapenko (LAT)": {
+            "player_id": "WTA319939",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS124"
+                    }
+                }
+            }
+        },
+        "Xinyu Wang (CHN)": {
+            "player_id": "WTA326376",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS125"
+                    }
+                }
+            }
+        },
+        "Zeynep Sonmez (TUR)": {
+            "player_id": "WTA326907",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS126"
+                    }
+                }
+            }
+        },
+        "Talia Gibson (AUS)": {
+            "player_id": "WTA329393",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS126",
+                        "2nd Round": "2025_901_WS213"
+                    }
+                }
+            }
+        },
+        "Jule Niemeier (GER)": {
+            "player_id": "WTA325940",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS127",
+                        "2nd Round": "2025_901_WS214"
+                    }
+                }
+            }
+        },
+        "Maja Chwalinska (POL)": {
+            "player_id": "WTA325639",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS127"
+                    }
+                }
+            }
+        },
+        "Nao Hibino (JPN)": {
+            "player_id": "WTA320238",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS128"
+                    }
+                }
+            }
+        },
+        "Marta Kostyuk (UKR)": {
+            "player_id": "WTA326482",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS128",
+                        "2nd Round": "2025_901_WS214",
+                        "3rd Round": "2025_901_WS307"
+                    }
+                }
+            }
+        },
+        "Liudmila Samsonova (RUS)": {
+            "player_id": "WTA322222",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS129",
+                        "2nd Round": "2025_901_WS215"
+                    }
+                }
+            }
+        },
+        "Kamilla Rakhimova (RUS)": {
+            "player_id": "WTA325936",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS129"
+                    }
+                }
+            }
+        },
+        "Arantxa Rus (NED)": {
+            "player_id": "WTA313349",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS130"
+                    }
+                }
+            }
+        },
+        "Olga Danilovic (SRB)": {
+            "player_id": "WTA324934",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS130",
+                        "2nd Round": "2025_901_WS215",
+                        "3rd Round": "2025_901_WS308",
+                        "4th Round": "2025_901_WS404"
+                    }
+                }
+            }
+        },
+        "Maya Joint (AUS)": {
+            "player_id": "WTA330544",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS132"
+                    }
+                }
+            }
+        },
+        "Jessica Pegula (USA)": {
+            "player_id": "WTA316956",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS132",
+                        "2nd Round": "2025_901_WS216",
+                        "3rd Round": "2025_901_WS308"
+                    }
+                }
+            }
+        },
+        "Elena Rybakina (KAZ)": {
+            "player_id": "WTA324166",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS133",
+                        "2nd Round": "2025_901_WS217",
+                        "3rd Round": "2025_901_WS309",
+                        "4th Round": "2025_901_WS405"
+                    }
+                }
+            }
+        },
+        "Emerson Jones (AUS)": {
+            "player_id": "WTA333111",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS133"
+                    }
+                }
+            }
+        },
+        "Nuria Parrizas Diaz (ESP)": {
+            "player_id": "WTA314359",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS134"
+                    }
+                }
+            }
+        },
+        "Iva Jovic (USA)": {
+            "player_id": "WTA332285",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS134",
+                        "2nd Round": "2025_901_WS217"
+                    }
+                }
+            }
+        },
+        "Danka Kovinic (MNE)": {
+            "player_id": "WTA317684",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS135",
+                        "2nd Round": "2025_901_WS218"
+                    }
+                }
+            }
+        },
+        "Lulu Sun (NZL)": {
+            "player_id": "WTA324576",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS135"
+                    }
+                }
+            }
+        },
+        "Mayar Sherif (EGY)": {
+            "player_id": "WTA318711",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS136"
+                    }
+                }
+            }
+        },
+        "Dayana Yastremska (UKR)": {
+            "player_id": "WTA324261",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS136",
+                        "2nd Round": "2025_901_WS218",
+                        "3rd Round": "2025_901_WS309"
+                    }
+                }
+            }
+        },
+        "Ann Li (USA)": {
+            "player_id": "WTA326096",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS137"
+                    }
+                }
+            }
+        },
+        "Irina-Camelia Begu (ROU)": {
+            "player_id": "WTA313169",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS138"
+                    }
+                }
+            }
+        },
+        "Elena-Gabriela Ruse (ROU)": {
+            "player_id": "WTA320408",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS138",
+                        "2nd Round": "2025_901_WS219"
+                    }
+                }
+            }
+        },
+        "Greet Minnen (BEL)": {
+            "player_id": "WTA321454",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS139"
+                    }
+                }
+            }
+        },
+        "Destanee Aiava (AUS)": {
+            "player_id": "WTA324219",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS139",
+                        "2nd Round": "2025_901_WS220"
+                    }
+                }
+            }
+        },
+        "Daria Snigur (UKR)": {
+            "player_id": "WTA327845",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS140"
+                    }
+                }
+            }
+        },
+        "Danielle Collins (USA)": {
+            "player_id": "WTA316925",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS140",
+                        "2nd Round": "2025_901_WS220",
+                        "3rd Round": "2025_901_WS310"
+                    }
+                }
+            }
+        },
+        "Beatriz Haddad Maia (BRA)": {
+            "player_id": "WTA318176",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS141",
+                        "2nd Round": "2025_901_WS221",
+                        "3rd Round": "2025_901_WS311"
+                    }
+                }
+            }
+        },
+        "Julia Riera (ARG)": {
+            "player_id": "WTA327287",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS141"
+                    }
+                }
+            }
+        },
+        "Saisai Zheng (CHN)": {
+            "player_id": "WTA316286",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS142"
+                    }
+                }
+            }
+        },
+        "Erika Andreeva (RUS)": {
+            "player_id": "WTA330151",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS142",
+                        "2nd Round": "2025_901_WS221"
+                    }
+                }
+            }
+        },
+        "Veronika Kudermetova (RUS)": {
+            "player_id": "WTA319526",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS143",
+                        "2nd Round": "2025_901_WS222",
+                        "3rd Round": "2025_901_WS311",
+                        "4th Round": "2025_901_WS406"
+                    }
+                }
+            }
+        },
+        "Olivia Gadecki (AUS)": {
+            "player_id": "WTA326653",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS143"
+                    }
+                }
+            }
+        },
+        "Rebecca Marino (CAN)": {
+            "player_id": "WTA313485",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS144"
+                    }
+                }
+            }
+        },
+        "Katie Boulter (GBR)": {
+            "player_id": "WTA319125",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS144",
+                        "2nd Round": "2025_901_WS222"
+                    }
+                }
+            }
+        },
+        "Elina Svitolina (UKR)": {
+            "player_id": "WTA316738",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS145",
+                        "2nd Round": "2025_901_WS223",
+                        "3rd Round": "2025_901_WS312",
+                        "4th Round": "2025_901_WS406"
+                    }
+                }
+            }
+        },
+        "Sorana Cirstea (ROU)": {
+            "player_id": "WTA312469",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS145"
+                    }
+                }
+            }
+        },
+        "Sara Bejlek (CZE)": {
+            "player_id": "WTA330375",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS146"
+                    }
+                }
+            }
+        },
+        "Caroline Dolehide (USA)": {
+            "player_id": "WTA322052",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS146",
+                        "2nd Round": "2025_901_WS223"
+                    }
+                }
+            }
+        },
+        "Taylor Townsend (USA)": {
+            "player_id": "WTA318609",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS147"
+                    }
+                }
+            }
+        },
+        "Renata Zarazua (MEX)": {
+            "player_id": "WTA320716",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS147",
+                        "2nd Round": "2025_901_WS224"
+                    }
+                }
+            }
+        },
+        "Sijia Wei (CHN)": {
+            "player_id": "WTA328426",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS148"
+                    }
+                }
+            }
+        },
+        "Jasmine Paolini (ITA)": {
+            "player_id": "WTA319280",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS148",
+                        "2nd Round": "2025_901_WS224",
+                        "3rd Round": "2025_901_WS312"
+                    }
+                }
+            }
+        },
+        "Emma Navarro (USA)": {
+            "player_id": "WTA325410",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS149",
+                        "2nd Round": "2025_901_WS225",
+                        "3rd Round": "2025_901_WS313"
+                    }
+                }
+            }
+        },
+        "Peyton Stearns (USA)": {
+            "player_id": "WTA327573",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS149"
+                    }
+                }
+            }
+        },
+        "Xiyu Wang (CHN)": {
+            "player_id": "WTA326160",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS150",
+                        "2nd Round": "2025_901_WS225"
+                    }
+                }
+            }
+        },
+        "Julia Grabher (AUT)": {
+            "player_id": "WTA320316",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS150"
+                    }
+                }
+            }
+        },
+        "Anhelina Kalinina (UKR)": {
+            "player_id": "WTA320567",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS151"
+                    }
+                }
+            }
+        },
+        "Ons Jabeur (TUN)": {
+            "player_id": "WTA316847",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS151",
+                        "2nd Round": "2025_901_WS226",
+                        "3rd Round": "2025_901_WS313"
+                    }
+                }
+            }
+        },
+        "Camila Osorio (COL)": {
+            "player_id": "WTA325898",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS152",
+                        "2nd Round": "2025_901_WS226"
+                    }
+                }
+            }
+        },
+        "Maria Sakkari (GRE)": {
+            "player_id": "WTA318312",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS152"
+                    }
+                }
+            }
+        },
+        "Yulia Putintseva (KAZ)": {
+            "player_id": "WTA317683",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS153",
+                        "2nd Round": "2025_901_WS227",
+                        "3rd Round": "2025_901_WS314"
+                    }
+                }
+            }
+        },
+        "Elina Avanesyan (ARM)": {
+            "player_id": "WTA327620",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS153"
+                    }
+                }
+            }
+        },
+        "Shuai Zhang (CHN)": {
+            "player_id": "WTA311779",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS154",
+                        "2nd Round": "2025_901_WS227"
+                    }
+                }
+            }
+        },
+        "McCartney Kessler (USA)": {
+            "player_id": "WTA326678",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS154"
+                    }
+                }
+            }
+        },
+        "Anna Bondar (HUN)": {
+            "player_id": "WTA322942",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS155"
+                    }
+                }
+            }
+        },
+        "Yafan Wang (CHN)": {
+            "player_id": "WTA317510",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS155",
+                        "2nd Round": "2025_901_WS228"
+                    }
+                }
+            }
+        },
+        "Viktoriya Tomova (BUL)": {
+            "player_id": "WTA317584",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS156"
+                    }
+                }
+            }
+        },
+        "Daria Kasatkina (RUS)": {
+            "player_id": "WTA322082",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS156",
+                        "2nd Round": "2025_901_WS228",
+                        "3rd Round": "2025_901_WS314"
+                    }
+                }
+            }
+        },
+        "Eva Lys (GER)": {
+            "player_id": "WTA325826",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS157",
+                        "2nd Round": "2025_901_WS229",
+                        "3rd Round": "2025_901_WS315"
+                    }
+                }
+            }
+        },
+        "Kimberly Birrell (AUS)": {
+            "player_id": "WTA320728",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS157"
+                    }
+                }
+            }
+        },
+        "Varvara Gracheva (FRA)": {
+            "player_id": "WTA325836",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS158",
+                        "2nd Round": "2025_901_WS229"
+                    }
+                }
+            }
+        },
+        "Caty McNally (USA)": {
+            "player_id": "WTA325725",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS158"
+                    }
+                }
+            }
+        },
+        "Petra Martic (CRO)": {
+            "player_id": "WTA313711",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS159"
+                    }
+                }
+            }
+        },
+        "Jaqueline Cristian (ROU)": {
+            "player_id": "WTA320319",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS159",
+                        "2nd Round": "2025_901_WS230",
+                        "3rd Round": "2025_901_WS315"
+                    }
+                }
+            }
+        },
+        "Lucia Bronzetti (ITA)": {
+            "player_id": "WTA322280",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS160",
+                        "2nd Round": "2025_901_WS230"
+                    }
+                }
+            }
+        },
+        "Victoria Azarenka (BLR)": {
+            "player_id": "WTA312001",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS160"
+                    }
+                }
+            }
+        },
+        "Ekaterina Alexandrova (RUS)": {
+            "player_id": "WTA319007",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS161"
+                    }
+                }
+            }
+        },
+        "Emma Raducanu (GBR)": {
+            "player_id": "WTA328366",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS161",
+                        "2nd Round": "2025_901_WS231",
+                        "3rd Round": "2025_901_WS316"
+                    }
+                }
+            }
+        },
+        "Maria Lourdes Carle (ARG)": {
+            "player_id": "WTA322638",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS162"
+                    }
+                }
+            }
+        },
+        "Amanda Anisimova (USA)": {
+            "player_id": "WTA326384",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS162",
+                        "2nd Round": "2025_901_WS231"
+                    }
+                }
+            }
+        },
+        "Rebecca Sramkova (SVK)": {
+            "player_id": "WTA320228",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS163",
+                        "2nd Round": "2025_901_WS232"
+                    }
+                }
+            }
+        },
+        "Katie Volynets (USA)": {
+            "player_id": "WTA327391",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS163"
+                    }
+                }
+            }
+        },
+        "Katerina Siniakova (CZE)": {
+            "player_id": "WTA320301",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS164"
+                    }
+                }
+            }
+        },
+        "Iga Swiatek (POL)": {
+            "player_id": "WTA326408",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "1st Round": "2025_901_WS164",
+                        "2nd Round": "2025_901_WS232",
+                        "3rd Round": "2025_901_WS316"
+                    }
+                }
+            }
+        },
+        "Laura Siegemund (GER)": {
+            "player_id": "WTA310926",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "2nd Round": "2025_901_WS208",
+                        "3rd Round": "2025_901_WS304"
+                    }
+                }
+            }
+        },
+        "Coco Gauff (USA)": {
+            "player_id": "WTA328560",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "2nd Round": "2025_901_WS209",
+                        "3rd Round": "2025_901_WS305"
+                    }
+                }
+            }
+        },
+        "Elise Mertens (BEL)": {
+            "player_id": "WTA317964",
+            "details": {
+                "2025": {
+                    "Australian Open": {
+                        "2nd Round": "2025_901_WS216"
+                    }
+                }
+            }
+        }
+    }
+}

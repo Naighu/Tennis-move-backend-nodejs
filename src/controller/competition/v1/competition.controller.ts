@@ -1,11 +1,11 @@
-import { query, withTransaction } from "../../services/postgres_db";
+import { query, withTransaction } from "../../../services/postgres_db";
 import { Request, Response } from "express";
-import { sendOk } from "../../utils/respond";
-import { loadSql, renderSql } from "../../services/sql";
-import { AppError } from "../../types/error.type";
+import { sendOk } from "../../../utils/respond";
+import { loadSql, renderSql } from "../../../services/sql";
+import { AppError } from "../../../types/error.type";
 import { CompetetitionGetAtheletesBody, CompetetitionGetMatchIdsBody, CompetetitionGetSelectedVideosBody, CompetetitionGetTableDataBody } from "./types";
-import { presignGet } from "../../services/s3";
-import { Bucket } from "../../types/bucket.type";
+import { presignGet } from "../../../services/s3";
+import { Bucket } from "../../../types/bucket.type";
 
 
 
@@ -47,7 +47,6 @@ export async function getSelectors(req: Request, res: Response) {
 */
 export async function getAthletes(req: Request, res: Response) {
   try {
-    console.log("getAthletes called");
 
     const body = req.query as unknown as CompetetitionGetAtheletesBody;
     const sql = loadSql("competition/list_athletes.sql");

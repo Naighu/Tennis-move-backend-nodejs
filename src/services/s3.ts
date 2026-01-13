@@ -47,3 +47,16 @@ export async function presignGet(bucket: string, key: string, seconds = 300) {
   return url;
 }
 
+
+export async function streamToString(stream: Readable): Promise<string> {
+  return await new Promise((resolve, reject) => {
+    const chunks: Buffer[] = [];
+
+    stream.on("data", (chunk) => chunks.push(Buffer.from(chunk)));
+    stream.on("error", reject);
+    stream.on("end", () =>
+      resolve(Buffer.concat(chunks).toString("utf-8"))
+    );
+  });
+};
+

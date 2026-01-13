@@ -1,7 +1,7 @@
 {
   "name": "tennis-move-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "A Node.js backend for the **Tennis Move** project. Runs in development and production, with generated build artifacts in `dist/`.   **API docs** are available at `GET /docs` when the server is running.",
   "license": "ISC",
   "author": "",
   "type": "commonjs",
@@ -12,7 +12,9 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.966.0",
     "@aws-sdk/client-s3": "^3.896.0",
+    "@aws-sdk/lib-dynamodb": "^3.966.0",
     "@aws-sdk/s3-request-presigner": "^3.896.0",
     "ajv": "^8.17.1",
     "ajv-formats": "^3.0.1",
@@ -34,5 +36,14 @@
     "@types/swagger-ui-express": "^4.1.8",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.9.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naighu/Tennis-move-backend-nodejs.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/Naighu/Tennis-move-backend-nodejs/issues"
+  },
+  "homepage": "https://github.com/Naighu/Tennis-move-backend-nodejs#readme"
 }

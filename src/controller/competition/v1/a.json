@@ -1,0 +1,110 @@
+{
+    "primary_key": "2025_580_MS101",
+    "sort_key": "competition#endrange#S1_G01_P002_S2_R01",
+    "stats": [
+        {
+            "match_id": "MS101",
+            "draw_name": null,
+            "year": 2025,
+            "competition_id": "580",
+            "tournament_name": null,
+            "competition_name": null,
+            "set": 1,
+            "game": 1,
+            "point": 2,
+            "rally": 1,
+            "serve": 2,
+            "serve_id": "2025_580_MS101_1_1_2_2_1",
+            "version": "3.0.0",
+            "court_id": "1",
+            "court_name": "Rod Laver Arena",
+            "round": "1st Round",
+            "tournament": "Australian Open",
+            "tour": "ATP",
+            "start_time": "2025-01-13T03:11:56.695Z",
+            "date_inserted": "2025-12-16T02:48:28.551Z",
+            "match_score": "[[['0', ''], ['0', '']]]",
+            "game_score": "[[1, '15'], [0, '0']]",
+            "pressure_point": false,
+            "player_id": "ATPJ551",
+            "team": 2,
+            "player": 1,
+            "first_name": "Nicolas",
+            "last_name": "Jarry",
+            "short_name": "N. Jarry",
+            "nationality": "CHI",
+            "court_side": "Advantage",
+            "handedness": "Right",
+            "seed": null,
+            "movement_stat": "endrange",
+            "end_range_count": 1,
+            "avg_duration": "2.09",
+            "avg_cadence": "144.0",
+            "avg_distance_in": "4.14",
+            "avg_distance_out": "1.05",
+            "avg_time_in_turn": "0.48",
+            "avg_distance_total": "5.19",
+            "avg_max_speed": "5.37",
+            "avg_max_acceleration": "9.37",
+            "avg_max_deceleration": "-14.2",
+            "avg_step_count": 5,
+            "avg_step_distance": "1.03",
+            "avg_step_max_speed": "2.7",
+            "avg_step_max_acceleration": "2.66",
+            "avg_step_max_deceleration": "-7.97",
+            "end_range_items": [
+                {
+                    "summary": {
+                        "video_key": "ATPJ551_2025_580_MS101_ATPJ551_2025_580_MS101_S1_G01_P002_S2_R01_cycle_03",
+                        "duration_s": "2.0889999999999995",
+                        "cadence_spm": "143.60938247965538",
+                        "distance_in_m": "4.142387533454033",
+                        "distance_out_m": "1.0526041719146515",
+                        "time_in_turn_s": "0.48",
+                        "distance_total_m": "5.194991705368684",
+                        "peak_velocity_ms": "5.365416113514392",
+                        "peak_acceleration_mss": "9.365308506509946",
+                        "peak_deceleration_mss": "-14.202741267085797"
+                    },
+                    "steps": [
+                        {
+                            "step_number": 1,
+                            "step_distance_m": "0.09726648666589684",
+                            "step_velocity_ms": "2.449803500733892",
+                            "step_acceleration_mss": "-0.25018332079119165",
+                            "step_deceleration_mss": "-1.8141334086472474"
+                        },
+                        {
+                            "step_number": 2,
+                            "step_distance_m": "0.6518039269769182",
+                            "step_velocity_ms": "2.3460747972345275",
+                            "step_acceleration_mss": "5.774500698299602",
+                            "step_deceleration_mss": "-5.9993125417044215"
+                        },
+                        {
+                            "step_number": 3,
+                            "step_distance_m": "3.8279286415037808",
+                            "step_velocity_ms": "5.365416113514392",
+                            "step_acceleration_mss": "9.365308506509946",
+                            "step_deceleration_mss": "-14.202741267085797"
+                        },
+                        {
+                            "step_number": 4,
+                            "step_distance_m": "0.41156249199521866",
+                            "step_velocity_ms": "2.776682387617712",
+                            "step_acceleration_mss": "-6.4958365268690414",
+                            "step_deceleration_mss": "-11.272355050688814"
+                        },
+                        {
+                            "step_number": 5,
+                            "step_distance_m": "0.1789010436256591",
+                            "step_velocity_ms": "0.5742780261674968",
+                            "step_acceleration_mss": "4.892174783130391",
+                            "step_deceleration_mss": "-6.547806469524401"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

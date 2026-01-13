@@ -1,9 +1,9 @@
 import { Router } from "express";
 
 import { validateAjv } from "../../middleware/validateAjv";
-import { competitionGetAtheletesBodySchema,competitionGetMatchIdsBodySchema, competitionGetSelectedVideosBodySchema, competitionGetTableDataBodySchema } from "../../controller/competition/v1/schemas";
+import { competitionGetAtheletesBodySchema,competitionGetMatchIdsBodySchema, competitionGetSelectedVideosBodySchema, competitionGetTableDataBodySchema } from "../../controller/competition/v2/schemas";
 
-import { getAthletes,getSelectors,getMatchIds,getSelectedVideos,getTableData} from "../../controller/competition/v1/competition.controller";
+import { getAthletes,getSelectors,getMatchIds,getSelectedVideos,getTableData} from "../../controller/competition/v2/competition.controller";
 const router = Router();
 
 router.get("/selectors",getSelectors);

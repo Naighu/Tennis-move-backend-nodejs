@@ -153,6 +153,21 @@ export const openapiSpec: OpenAPIObject = {
         schema: { type: "string" },
         description: "Reference match identifier",
       },
+      SortKeyParam: {
+        name: "sort_key",
+        in: "query",
+        required: false,
+        schema: { type: "string" },
+        description: "Sort key for the match data",
+      },
+      PillerParam: {
+        name: "piller",
+        in: "query",
+        required: false,
+        schema: { type: "string" },
+        description: "Piller value(endrange, serve, ros)",
+      },
+
     },
   },
 
@@ -259,6 +274,93 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
+    "/api/v2/competition/selectors": {
+      get: {
+        tags: ["Competition"],
+        summary: "Get selectors for competition",
+        security: [{ ApiKeyAuth: [] }],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+    "/api/v2/competition/athletes": {
+      get: {
+        tags: ["Competition"],
+        summary: "List athletes by tournament/year/population",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          { $ref: "#/components/parameters/YearParam" },
+          { $ref: "#/components/parameters/PopulationParam" },
+          { $ref: "#/components/parameters/TournamentIdParam" },
+
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+    "/api/v2/competition/match-id": {
+      get: {
+        tags: ["Competition"],
+        summary: "Get match id",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          { $ref: "#/components/parameters/YearParam" },
+          { $ref: "#/components/parameters/PopulationParam" },
+          { $ref: "#/components/parameters/AthleteIdParam" },
+          { $ref: "#/components/parameters/TournamentIdParam" },
+          { $ref: "#/components/parameters/PillerParam" },
+
+
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+    "/api/v2/competition/table-data": {
+      get: {
+        tags: ["Competition"],
+        summary: "Get competition table data (by year/tournament/population/feature)",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          { $ref: "#/components/parameters/SortKeyParam" },
+          { $ref: "#/components/parameters/ReferenceMatchIdParam" },
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+    "/api/v2/competition/video": {
+      get: {
+        tags: ["Competition"],
+        summary: "Get selected competition videos",
+        security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          { $ref: "#/components/parameters/ReferenceMatchIdParam" },
+          { $ref: "#/components/parameters/PillerParam" },
+          { name: "video_key", in: "query", schema: { type: "string" }, required: true },
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
     "/api/v1/trends/top-players": {
       get: {
         tags: ["Trends"],
@@ -283,7 +385,7 @@ export const openapiSpec: OpenAPIObject = {
     },
 
 
-     "/api/v1/trends/distribution": {
+    "/api/v1/trends/distribution": {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",

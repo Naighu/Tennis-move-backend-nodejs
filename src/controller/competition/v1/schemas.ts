@@ -1,5 +1,5 @@
 import { SchemaObject } from "ajv";
-import { populationEnum } from "../../types";
+import { populationEnum } from "../../../types";
 
 
 
