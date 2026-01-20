@@ -16,33 +16,26 @@ export const competitionGetAtheletesBodySchema: SchemaObject = {
     }
 } as const;
 
-
-
-
-
-export const competitionGetMatchIdsBodySchema: SchemaObject = {
+export const competitionGetMatchPrimaryKeyBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["year", "pop", "player_id","piller"],
+    required: ["year", "pop", "player_id","tid"],
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
         pop: { type: "string", enum: populationEnum },
+        tid: { type: "integer" },
         player_id: { type: "string" },
-        piller: { type: "string" },
-
     }
 } as const;
 
 export const competitionGetTableDataBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["sort_key", "reference_match_id"],
+    required: ["primary_key", "piller"],
     properties: {
-
-        sort_key: { type: "string" },
-        reference_match_id: { type: "string" },
-
+        primary_key: { type: "string" },
+        piller: { type: "string" },
     }
 } as const;
 

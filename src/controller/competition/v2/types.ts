@@ -3,17 +3,17 @@ export interface CompetetitionGetAtheletesBody {
   pop: string;
   tid: number;
 }
-export interface CompetetitionGetMatchIdsBody {
+
+export interface CompetetitionGetTableDataBody {
+  primary_key: string;
+  piller: string;
+}
+
+export interface CompetetitionGetMatchPrimaryKeysBody {
   year: number;
   pop: string;
   player_id: string;
   tid: number;
-  piller: string;
-}
-
-export interface CompetetitionGetTableDataBody {
-  sort_key: string;
-  reference_match_id: string;
 }
 
 export interface CompetetitionGetSelectedVideosBody {      

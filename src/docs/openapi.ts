@@ -146,19 +146,12 @@ export const openapiSpec: OpenAPIObject = {
         schema: { type: "string" },
         description: "Competition player identifier",
       },
-      ReferenceMatchIdParam: {
-        name: "reference_match_id",
+      PrimaryKeyParam: {
+        name: "primary_key",
         in: "query",
         required: false,
         schema: { type: "string" },
-        description: "Reference match identifier",
-      },
-      SortKeyParam: {
-        name: "sort_key",
-        in: "query",
-        required: false,
-        schema: { type: "string" },
-        description: "Sort key for the match data",
+        description: "Primary key for the match data",
       },
       PillerParam: {
         name: "piller",
@@ -305,19 +298,18 @@ export const openapiSpec: OpenAPIObject = {
         },
       },
     },
-    "/api/v2/competition/match-id": {
+    
+
+    "/api/v2/competition/match-ids": {
       get: {
         tags: ["Competition"],
-        summary: "Get match id",
+        summary: "Get competition match id primary key",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/YearParam" },
+          { $ref: "#/components/parameters/TournamentIdParam" },
           { $ref: "#/components/parameters/PopulationParam" },
           { $ref: "#/components/parameters/AthleteIdParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
-          { $ref: "#/components/parameters/PillerParam" },
-
-
         ],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
@@ -326,15 +318,14 @@ export const openapiSpec: OpenAPIObject = {
         },
       },
     },
-
     "/api/v2/competition/table-data": {
       get: {
         tags: ["Competition"],
-        summary: "Get competition table data (by year/tournament/population/feature)",
+        summary: "Get competition table data",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
-          { $ref: "#/components/parameters/SortKeyParam" },
-          { $ref: "#/components/parameters/ReferenceMatchIdParam" },
+          { $ref: "#/components/parameters/PrimaryKeyParam" },
+          { $ref: "#/components/parameters/PillerParam" },
         ],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },

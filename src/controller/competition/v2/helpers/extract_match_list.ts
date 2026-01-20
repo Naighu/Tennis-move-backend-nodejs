@@ -154,21 +154,22 @@ export function extractMatchIds(
   playerId: string,
 
   population: string
-): Record<string, any> {
-  const result: Record<string, any> = {};
+): string[] {
+  const result: string[] = [];
   const populationKey = getPopulationKey(population);
   if (!populationKey) return result;
 
   const players = data[populationKey];
   if (!players) return result;
 
-  const seen = new Set<string>();
-
   for (const player of Object.values(players) as Player[]) {
-    if (player.player_id == playerId && player.details[year]) {
-      Object.assign(result, player.details[year]);
+  if (player.player_id === playerId && player.details[year]) {
+    const tournaments = Object.values(player.details[year]); // array of { round: matchId }
+    for (const rounds of tournaments) {
+      result.push(...Object.values(rounds)); // push match IDs
     }
   }
+}
   return result
 
 }
