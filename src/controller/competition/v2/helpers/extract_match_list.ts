@@ -154,8 +154,8 @@ export function extractMatchIds(
   playerId: string,
 
   population: string
-): string[] {
-  const result: string[] = [];
+): Record<string, any> {
+  const result: Record<string, any> = {};
   const populationKey = getPopulationKey(population);
   if (!populationKey) return result;
 
@@ -163,13 +163,10 @@ export function extractMatchIds(
   if (!players) return result;
 
   for (const player of Object.values(players) as Player[]) {
-  if (player.player_id === playerId && player.details[year]) {
-    const tournaments = Object.values(player.details[year]); // array of { round: matchId }
-    for (const rounds of tournaments) {
-      result.push(...Object.values(rounds)); // push match IDs
+    if (player.player_id == playerId && player.details[year]) {
+      Object.assign(result, player.details[year]);
     }
   }
-}
   return result
 
 }
