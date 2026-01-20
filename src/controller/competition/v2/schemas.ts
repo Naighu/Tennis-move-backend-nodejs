@@ -42,10 +42,10 @@ export const competitionGetTableDataBodySchema: SchemaObject = {
 export const competitionGetSelectedVideosBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["video_key","reference_match_id","piller"],
+    required: ["video_key","primary_key","piller"],
     properties: {
         video_key: { type: "string" },
-        reference_match_id: { type: "string" },
+        primary_key: { type: "string" },
         piller: { type: "string" },
     }
 } as const;

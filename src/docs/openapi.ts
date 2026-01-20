@@ -340,7 +340,7 @@ export const openapiSpec: OpenAPIObject = {
         summary: "Get selected competition videos",
         security: [{ ApiKeyAuth: [] }],
         parameters: [
-          { $ref: "#/components/parameters/ReferenceMatchIdParam" },
+          { $ref: "#/components/parameters/PrimaryKeyParam" },
           { $ref: "#/components/parameters/PillerParam" },
           { name: "video_key", in: "query", schema: { type: "string" }, required: true },
         ],

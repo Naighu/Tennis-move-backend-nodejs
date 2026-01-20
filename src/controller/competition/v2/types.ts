@@ -18,6 +18,6 @@ export interface CompetetitionGetMatchPrimaryKeysBody {
 
 export interface CompetetitionGetSelectedVideosBody {      
    video_key: string;
-   reference_match_id: string;
+   primary_key: string;
    piller: string;
 }
