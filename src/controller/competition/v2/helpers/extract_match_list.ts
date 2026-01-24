@@ -114,10 +114,15 @@ export function extractAthletes(
   if (!players) return result;
 
   const seen = new Set<string>();
+console.log(`YEAR: ${year} tid: ${tournamentId}`);
 
   for (const [fullName, player] of Object.entries(players)) {
+    
     const yearData = player.details[year];
+    
     if (!yearData) continue;
+
+    console.log(`Full name ${fullName} player = ${player}`);
 
     let participated = false;
 

@@ -101,7 +101,7 @@ export async function getSelectedVideos(req: Request, res: Response) {
     const year = body.primary_key.split("_")[0];
     const tournament_id = body.primary_key.split("_")[1];
     const match_id = body.primary_key.split("_")[2];
-    const video_key = `match-play/${year}/${tournament_id}/${match_id}/video/${body.piller}/camera_main/${body.video_key}.mp4`
+    const video_key = `video/year=${year}/competition=${tournament_id}/match=${match_id}/angle=c1/clips/${body.video_key}.mp4`
 
     const url = await presignGet(Bucket.TennisMoveResources, video_key);
 
