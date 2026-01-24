@@ -1,5 +1,6 @@
 import { getObjectStream, streamToString } from "../../../../services/s3";
-import { Bucket } from "../../../../types/bucket.type";
+import { AWSKey } from "../../../../types";
+
 
 type MatchList = {
   [population: string]: {
@@ -38,7 +39,7 @@ const CATEGORY_MAP: Record<string, string[]> = {
 
 export async function fetchMatchList(): Promise<MatchList> {
   // This function would fetch the match list from s3 bucket
-  const match_list = await getObjectStream(Bucket.TennisMoveResources, 'web-assets/selectors/match_list.json')
+  const match_list = await getObjectStream(AWSKey.TennisMoveBucket, 'web-assets/selectors/match_list.json')
   const jsonString = await streamToString(match_list.stream);
   const matchListObject = JSON.parse(jsonString);
   return matchListObject;

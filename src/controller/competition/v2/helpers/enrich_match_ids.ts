@@ -1,4 +1,5 @@
 import { queryDynamoDb } from "../../../../services/dyanmo_db";
+import { AWSKey } from "../../../../types";
 
 type MatchInfo = {
   reference_match_id: string;
@@ -30,7 +31,7 @@ export async function enrichMatchIds(matchIds: Record<string, Record<string, str
 // Helper to fetch sort keys for a single match
 async function getSortKeysForMatch(matchId: string,piller:string): Promise<string[]> {
   const rows = await queryDynamoDb<{ sort_key: string }>({
-    TableName: "tennis-move",
+    TableName: AWSKey.TennisMoveDynamoDB,
     KeyConditionExpression: "primary_key = :pk AND begins_with(sort_key, :skPrefix)",
     ExpressionAttributeValues: {
       ":pk": matchId,
