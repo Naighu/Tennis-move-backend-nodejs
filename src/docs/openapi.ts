@@ -160,6 +160,13 @@ export const openapiSpec: OpenAPIObject = {
         schema: { type: "string" },
         description: "Piller value(endrange, serve, ros)",
       },
+      CameraAngleParam: {
+        name: "camera_angle",
+        in: "query",
+        required: false,
+        schema: { type: "string" },
+        description: "Camera angle (e.g., c1, c2, c3)",
+      },
 
     },
   },
@@ -341,7 +348,7 @@ export const openapiSpec: OpenAPIObject = {
         security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/PrimaryKeyParam" },
-          { $ref: "#/components/parameters/PillerParam" },
+          { $ref: "#/components/parameters/CameraAngleParam" },
           { name: "video_key", in: "query", schema: { type: "string" }, required: true },
         ],
         responses: {
