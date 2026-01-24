@@ -1,14 +1,11 @@
-import { query, withTransaction } from "../../../services/postgres_db";
 import { Request, Response } from "express";
 import { sendNoContent, sendOk } from "../../../utils/respond";
-import { loadSql, renderSql } from "../../../services/sql";
 import { AppError } from "../../../types/error.type";
 import { CompetetitionGetAtheletesBody, CompetetitionGetMatchPrimaryKeysBody, CompetetitionGetSelectedVideosBody, CompetetitionGetTableDataBody } from "./types";
 import { getObjectStream, presignGet, streamToString } from "../../../services/s3";
-import { Bucket } from "../../../types/bucket.type";
 import { extractAthletes, extractMatchIds, extractSelectors, fetchMatchList } from "./helpers/extract_match_list";
 import { queryDynamoDb } from "../../../services/dyanmo_db";
-import { enrichMatchIds } from "./helpers/enrich_match_ids";
+import { AWSKey } from "../../../types";
 
 
 
@@ -103,7 +100,7 @@ export async function getSelectedVideos(req: Request, res: Response) {
     const match_id = body.primary_key.split("_")[2];
     const video_key = `video/year=${year}/competition=${tournament_id}/match=${match_id}/angle=c1/clips/${body.video_key}.mp4`
 
-    const url = await presignGet(Bucket.TennisMoveResources, video_key);
+    const url = await presignGet(AWSKey.TennisMoveBucket, video_key);
 
     return sendOk(res, { "url": url });
   } catch (err: any) {

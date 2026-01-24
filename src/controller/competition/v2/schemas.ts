@@ -1,5 +1,5 @@
 import { SchemaObject } from "ajv";
-import { populationEnum } from "../../../types";
+import { CameraAngle, populationEnum } from "../../../types";
 
 
 
@@ -42,10 +42,10 @@ export const competitionGetTableDataBodySchema: SchemaObject = {
 export const competitionGetSelectedVideosBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["video_key","primary_key","piller"],
+    required: ["video_key","primary_key","camera_angle"],
     properties: {
         video_key: { type: "string" },
         primary_key: { type: "string" },
-        piller: { type: "string" },
+        camera_angle: { type: "string", enum: Object.values(CameraAngle) },
     }
 } as const;

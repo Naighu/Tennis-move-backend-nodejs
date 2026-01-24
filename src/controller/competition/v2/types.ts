@@ -1,3 +1,5 @@
+import { CameraAngle } from "../../../types";
+
 export interface CompetetitionGetAtheletesBody {
   year: number;
   pop: string;
@@ -19,5 +21,5 @@ export interface CompetetitionGetMatchPrimaryKeysBody {
 export interface CompetetitionGetSelectedVideosBody {      
    video_key: string;
    primary_key: string;
-   piller: string;
+   camera_angle: CameraAngle;
 }
