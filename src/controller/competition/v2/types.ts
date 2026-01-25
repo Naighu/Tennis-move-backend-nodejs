@@ -1,4 +1,4 @@
-import { CameraAngle } from "../../../types";
+import { CameraAngle, Piller } from "../../../types";
 
 export interface CompetetitionGetAtheletesBody {
   year: number;
@@ -8,7 +8,6 @@ export interface CompetetitionGetAtheletesBody {
 
 export interface CompetetitionGetTableDataBody {
   primary_key: string;
-  piller: string;
 }
 
 export interface CompetetitionGetMatchPrimaryKeysBody {

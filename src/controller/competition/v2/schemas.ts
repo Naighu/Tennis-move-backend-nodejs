@@ -32,10 +32,9 @@ export const competitionGetMatchPrimaryKeyBodySchema: SchemaObject = {
 export const competitionGetTableDataBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["primary_key", "piller"],
+    required: ["primary_key"],
     properties: {
         primary_key: { type: "string" },
-        piller: { type: "string" },
     }
 } as const;
 

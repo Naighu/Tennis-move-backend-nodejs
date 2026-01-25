@@ -5,7 +5,7 @@ import { CompetetitionGetAtheletesBody, CompetetitionGetMatchPrimaryKeysBody, Co
 import { getObjectStream, presignGet, streamToString } from "../../../services/s3";
 import { extractAthletes, extractMatchIds, extractSelectors, fetchMatchList } from "./helpers/extract_match_list";
 import { queryDynamoDb } from "../../../services/dyanmo_db";
-import { AWSKey } from "../../../types";
+import { AWSKey, Piller } from "../../../types";
 
 
 
@@ -71,14 +71,17 @@ export async function getMatchPrimaryKeys(req: Request, res: Response) {
 
 export async function getTableData(req: Request, res: Response) {
   try {
+    const piller = req.params.piller as string;
 
+    if (Object.values(Piller).includes(piller as Piller) === false)
+      throw new AppError("VALIDATION_ERROR", "Invalid piller value", undefined);
     const body = req.query as unknown as CompetetitionGetTableDataBody;
     const rows = await queryDynamoDb<{ stats: any[] }>({
       TableName: "tennis-move",
       KeyConditionExpression: "primary_key = :pk AND begins_with(sort_key, :skPrefix)",
       ExpressionAttributeValues: {
         ":pk": body.primary_key,
-        ":skPrefix": `competition#${body.piller}`,
+        ":skPrefix": `competition#${piller}`,
       },
     });
     const result: any[] = [];
