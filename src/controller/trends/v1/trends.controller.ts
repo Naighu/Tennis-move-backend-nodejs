@@ -1,11 +1,12 @@
-import { query, withTransaction } from "../../services/postgres_db";
 import { Request, Response } from "express";
-import { sendOk } from "../../utils/respond";
 import { TrendsTopPlayersBody, FEATURES, FILTERS, TABLES, RANKING_BRACKETS, TrendsGetVideoBody, TrendsGetWinPercentageBody, TrendsDistributionBody } from "./types";
-import { loadSql, renderSql } from "../../services/sql";
-import { AppError } from "../../types/error.type";
-import { presignGet } from "../../services/s3";
-import { AWSKey } from "../../types";
+import { loadSql, renderSql } from "../../../services/sql";
+import { AppError } from "../../../types/error.type";
+import { query } from "../../../services/postgres_db";
+import { sendOk } from "../../../utils/respond";
+import { presignGet } from "../../../services/s3";
+import { AWSKey } from "../../../types";
+
 
 /**
     Gets the unique year, tournament id, and population values from the competition match table

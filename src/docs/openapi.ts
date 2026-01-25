@@ -172,18 +172,7 @@ export const openapiSpec: OpenAPIObject = {
   },
 
   paths: {
-    "/api/v1/trends/selectors": {
-      get: {
-        tags: ["Trends"],
-        summary: "Get selectors for trends",
-        security: [{ ApiKeyAuth: [] }],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
+   
 
     "/api/v1/competition/selectors": {
       get: {
@@ -359,6 +348,18 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
+     "/api/v1/trends/selectors": {
+      get: {
+        tags: ["Trends"],
+        summary: "Get selectors for trends",
+        security: [{ ApiKeyAuth: [] }],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
     "/api/v1/trends/top-players": {
       get: {
         tags: ["Trends"],
@@ -437,6 +438,47 @@ export const openapiSpec: OpenAPIObject = {
             },
           },
         },
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+
+
+     "/api/v2/trends/serve/selectors": {
+      get: {
+        tags: ["Trends"],
+        summary: "Get selectors for trends",
+        security: [{ ApiKeyAuth: [] }],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+     "/api/v2/trends/ros/selectors": {
+      get: {
+        tags: ["Trends"],
+        summary: "Get selectors for trends",
+        security: [{ ApiKeyAuth: [] }],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+     "/api/v2/trends/endrange/selectors": {
+      get: {
+        tags: ["Trends"],
+        summary: "Get selectors for trends",
+        security: [{ ApiKeyAuth: [] }],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },

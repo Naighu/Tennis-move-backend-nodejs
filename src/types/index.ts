@@ -17,6 +17,25 @@ export enum CameraAngle {
   C3 = "c3",
 }
 
+
+export enum RankGroupEnum {
+  TOP10 = "top_10",
+  TOP11_50 = "top_11_50",
+  TOP51_100 = "top_51_100",
+  TOP101_250 = "top_101_250",
+}
+
+
+
+// Helper function to get RankGroup key from RankGroupEnum
+export const getRankGroupKey = (rankGroup: string): string | undefined => {
+  return Object.keys(PopulationCategory).find((key) =>
+    PopulationCategory[key].includes(rankGroup)
+  );
+};
+
+
+
 export enum AWSKey {
   TennisMoveBucket = "tennis-move-resources",
   TennisMoveDynamoDB = "tennis-move",

@@ -1,6 +1,6 @@
 import { SchemaObject } from "ajv";
 import { FEATURES, FILTERS, RANKING_BRACKETS, TABLES } from "./types";
-import { PopulationCategory } from "../../types";
+import { PopulationCategory } from "../../../types";
 
 
 
