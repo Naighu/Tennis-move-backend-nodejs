@@ -1,5 +1,5 @@
 import { SchemaObject } from "ajv";
-import { populationEnum } from "../../../types";
+import { PopulationCategory } from "../../../types";
 
 
 
@@ -11,7 +11,7 @@ export const competitionGetAtheletesBodySchema: SchemaObject = {
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
-        pop: { type: "string", enum: populationEnum },
+        pop: { type: "string", enum: Object.values(PopulationCategory).flat()  },
 
     }
 } as const;
@@ -27,7 +27,7 @@ export const competitionGetMatchIdsBodySchema: SchemaObject = {
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
-        pop: { type: "string", enum: populationEnum },
+        pop: { type: "string", enum:  Object.values(PopulationCategory).flat() },
         player_id: { type: "string" },
 
     }

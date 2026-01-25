@@ -1,5 +1,5 @@
 import { getObjectStream, streamToString } from "../../../../services/s3";
-import { AWSKey } from "../../../../types";
+import { AWSKey, getPopulationKey, PopulationCategory } from "../../../../types";
 
 
 type MatchList = {
@@ -32,10 +32,7 @@ type AthleteResult = {
 };
 
 
-const CATEGORY_MAP: Record<string, string[]> = {
-  "Men's Singles": ["BS", "MS"],
-  "Women's Singles": ["GS", "WS"],
-};
+
 
 export async function fetchMatchList(): Promise<MatchList> {
   // This function would fetch the match list from s3 bucket
@@ -51,7 +48,7 @@ export function extractSelectors(data: MatchList): OutputData {
 
   for (const category of Object.keys(data)) {
     const players = data[category];
-    const formats = CATEGORY_MAP[category];
+    const formats = PopulationCategory[category];
 
     if (!formats) continue;
 
@@ -92,12 +89,7 @@ const formatAthleteName = (fullName: string): string => {
   return `${firstName[0]}. ${lastName}`;
 };
 
-// Helper function to get population key from CATEGORY_MAP
-const getPopulationKey = (population: string): string | undefined => {
-  return Object.keys(CATEGORY_MAP).find((key) =>
-    CATEGORY_MAP[key].includes(population)
-  );
-};
+
 
 
 export function extractAthletes(
@@ -115,7 +107,6 @@ export function extractAthletes(
   if (!players) return result;
 
   const seen = new Set<string>();
-console.log(`YEAR: ${year} tid: ${tournamentId}`);
 
   for (const [fullName, player] of Object.entries(players)) {
     
@@ -123,7 +114,6 @@ console.log(`YEAR: ${year} tid: ${tournamentId}`);
     
     if (!yearData) continue;
 
-    console.log(`Full name ${fullName} player = ${player}`);
 
     let participated = false;
 

@@ -1,6 +1,6 @@
 import { SchemaObject } from "ajv";
-import { populationEnum } from "../../types";
 import { FEATURES, FILTERS, RANKING_BRACKETS, TABLES } from "./types";
+import { PopulationCategory } from "../../types";
 
 
 
@@ -21,7 +21,7 @@ export const TrendsTopPlayersBodySchema : SchemaObject= {
     filter_feature: { type: "string", enum: filterEnum },
     lower_value:    { type: "number" },
     upper_value:    { type: "number" },
-    pop:            { type: "string", enum: populationEnum },
+    pop:            { type: "string", enum:  Object.values(PopulationCategory).flat() },
     ranking_bracket:{ type: "string", default: "All", enum: rankingBracketEnum },
   }
 } as const;
@@ -37,7 +37,7 @@ export const TrendsDistributionBodySchema : SchemaObject= {
     filter_feature: { type: "string", enum: filterEnum },
     lower_value:    { type: "number" },
     upper_value:    { type: "number" },
-    pop:            { type: "string", enum: populationEnum },
+    pop:            { type: "string", enum:  Object.values(PopulationCategory).flat() },
   }
 } as const;
 
