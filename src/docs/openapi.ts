@@ -487,13 +487,13 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
-    "/api/v2/trends/top-players/{piller}": {
+    "/api/v2/trends/top-players/serve": {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",
         // security: [{ ApiKeyAuth: [] }],
         parameters: [
-          { $ref: "#/components/parameters/PillerParam" },
+        
           {
             name: "rank_group",
             in: "query",
@@ -514,6 +514,70 @@ export const openapiSpec: OpenAPIObject = {
             required: false,
             schema: { type: "string" },
             description: "Feature Metric (e.g., fast_arm, leg_drive)",
+          },
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+    "/api/v2/trends/top-players/endrange": {
+      get: {
+        tags: ["Trends"],
+        summary: "Top rows by feature",
+        // security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "rank_group",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Ranking bucket (e.g., top_10, top_11_50)",
+          },
+          {
+            name: "feature",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Feature Metric (e.g., dist_in, max_accel)",
+          },
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+    "/api/v2/trends/top-players/ros": {
+      get: {
+        tags: ["Trends"],
+        summary: "Top rows by feature",
+        // security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          {
+            name: "rank_group",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Ranking bucket (e.g., top_10, top_11_50)",
+          },
+           {
+            name: "return_shot_type",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Return shot type (e.g., forehand, backhand)",
+          },
+          {
+            name: "feature",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Feature Metric (e.g., split_timing, movement_velocity)",
           },
         ],
         responses: {

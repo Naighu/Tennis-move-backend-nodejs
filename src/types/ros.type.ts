@@ -8,6 +8,6 @@ export enum RosFeatureMetrics {
 }
 
 export enum RosReturnShotTypes {
-  FOREHAND = "forehand",
-  BACKHAND = "backhand"
+  FOREHAND = "Forehand",
+  BACKHAND = "Backhand"
 }

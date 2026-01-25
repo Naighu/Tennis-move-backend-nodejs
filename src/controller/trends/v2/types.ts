@@ -1,9 +1,21 @@
-import { Piller, RankGroupEnum } from "../../../types";
+import {  RankGroupEnum } from "../../../types";
+import { EndrangeFeatureMetrics } from "../../../types/endrange.type";
+import { RosFeatureMetrics, RosReturnShotTypes } from "../../../types/ros.type";
 import { ServeCalls, ServeFeatureMetrics } from "../../../types/serve.type";
 
-export interface GetTrendsTopPlayersParams {
-  piller: Piller;
+export interface GetTrendsTopPlayersBaseParams {
   rank_group: RankGroupEnum;
+  feature: ServeFeatureMetrics | RosFeatureMetrics | EndrangeFeatureMetrics;
+}
+
+export interface GetTrendsServeTopPlayersParams extends GetTrendsTopPlayersBaseParams {
   serve_call: ServeCalls;
-  feature: ServeFeatureMetrics
+}
+
+export interface GetTrendsEndrangeTopPlayersParams extends GetTrendsTopPlayersBaseParams {
+ 
+}
+
+export interface GetTrendsRosTopPlayersParams extends GetTrendsTopPlayersBaseParams {
+  return_shot_type: RosReturnShotTypes;
 }
