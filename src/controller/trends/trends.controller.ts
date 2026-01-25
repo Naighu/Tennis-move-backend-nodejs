@@ -5,7 +5,7 @@ import { TrendsTopPlayersBody, FEATURES, FILTERS, TABLES, RANKING_BRACKETS, Tren
 import { loadSql, renderSql } from "../../services/sql";
 import { AppError } from "../../types/error.type";
 import { presignGet } from "../../services/s3";
-import { Bucket } from "../../types/bucket.type";
+import { AWSKey } from "../../types";
 
 /**
     Gets the unique year, tournament id, and population values from the competition match table
@@ -114,7 +114,7 @@ export async function getVideo(req: Request, res: Response) {
     const video_key = `match-play/${row_id[1]}/${row_id[2]}/${row_id[3]}/video/${b.source}/${b.camera}/${b.selected_row}.mp4`
 
 
-    const url = await presignGet(Bucket.TennisMoveResources, video_key);
+    const url = await presignGet(AWSKey.TennisMoveBucket, video_key);
 
     return sendOk(res, { "url": url });
   } catch (err: any) {

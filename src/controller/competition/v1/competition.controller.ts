@@ -5,7 +5,7 @@ import { loadSql, renderSql } from "../../../services/sql";
 import { AppError } from "../../../types/error.type";
 import { CompetetitionGetAtheletesBody, CompetetitionGetMatchIdsBody, CompetetitionGetSelectedVideosBody, CompetetitionGetTableDataBody } from "./types";
 import { presignGet } from "../../../services/s3";
-import { Bucket } from "../../../types/bucket.type";
+import { AWSKey } from "../../../types";
 
 
 
@@ -117,7 +117,7 @@ export async function getSelectedVideos(req: Request, res: Response) {
     
     const video_key = `match-play/${metadata['year']}/${metadata['tournament_id']}/${metadata['match_id']}/video/${body.source}/${body.camera}/${body.selected_row}.mp4`
 
-    const url = await presignGet(Bucket.TennisMoveResources, video_key);
+    const url = await presignGet(AWSKey.TennisMoveBucket, video_key);
 
     return sendOk(res, { "url": url });
   } catch (err: any) {
