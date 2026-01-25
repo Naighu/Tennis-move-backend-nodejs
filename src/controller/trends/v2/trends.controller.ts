@@ -48,3 +48,13 @@ export async function getEndrangeSelectors(req: Request, res: Response) {
   }
 }
 
+
+export async function getTopPlayers(req: Request, res: Response) {
+  try {
+    return sendOk(res, {
+      message: `Top players endpoint for ${req.params.piller} trends is under construction.`
+    });
+  } catch (err: any) {
+    throw new AppError("INTERNAL", err, undefined);
+  }
+}

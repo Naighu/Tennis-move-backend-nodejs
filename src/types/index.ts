@@ -1,3 +1,9 @@
+export enum Piller {
+  SERVE = "serve",
+  RETURN_OF_SERVE = "ros",
+  END_RANGE = "endrange",
+}
+
 export const PopulationCategory: Record<string, string[]> = {
   "Men's Singles": ["BS", "MS"],
   "Women's Singles": ["GS", "WS"],

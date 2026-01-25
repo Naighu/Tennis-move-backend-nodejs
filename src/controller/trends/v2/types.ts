@@ -1,10 +1,9 @@
-// export interface Trends {
-//   table: TableKey;
-//   year: number;
-//   feature: FeatureKey;
-//   filter_feature: FilterKey;
-//   lower_value: number;
-//   upper_value: number;
-//   pop: string;
-//   ranking_bracket?: RankingBracketKey;
-// }
+import { Piller, RankGroupEnum } from "../../../types";
+import { ServeCalls, ServeFeatureMetrics } from "../../../types/serve.type";
+
+export interface GetTrendsTopPlayersParams {
+  piller: Piller;
+  rank_group: RankGroupEnum;
+  serve_call: ServeCalls;
+  feature: ServeFeatureMetrics
+}

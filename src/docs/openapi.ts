@@ -107,7 +107,7 @@ export const openapiSpec: OpenAPIObject = {
         in: "query",
         required: false,
         schema: { type: "string" },
-        description: "Ranking bucket (e.g., Top 10)",
+        description: "Ranking bucket (e.g., top_10, top_11_50)",
       },
       FeatureParam: {
         name: "feature",
@@ -155,8 +155,8 @@ export const openapiSpec: OpenAPIObject = {
       },
       PillerParam: {
         name: "piller",
-        in: "query",
-        required: false,
+        in: "path",
+        required: true,
         schema: { type: "string" },
         description: "Piller value(endrange, serve, ros)",
       },
@@ -172,7 +172,7 @@ export const openapiSpec: OpenAPIObject = {
   },
 
   paths: {
-   
+
 
     "/api/v1/competition/selectors": {
       get: {
@@ -294,7 +294,7 @@ export const openapiSpec: OpenAPIObject = {
         },
       },
     },
-    
+
 
     "/api/v2/competition/match-ids": {
       get: {
@@ -314,7 +314,7 @@ export const openapiSpec: OpenAPIObject = {
         },
       },
     },
-    "/api/v2/competition/table-data": {
+    "/api/v2/competition/table-data/{piller}": {
       get: {
         tags: ["Competition"],
         summary: "Get competition table data",
@@ -348,7 +348,7 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
-     "/api/v1/trends/selectors": {
+    "/api/v1/trends/selectors": {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
@@ -448,7 +448,7 @@ export const openapiSpec: OpenAPIObject = {
 
 
 
-     "/api/v2/trends/serve/selectors": {
+    "/api/v2/trends/selectors/serve": {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
@@ -461,7 +461,7 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
-     "/api/v2/trends/ros/selectors": {
+    "/api/v2/trends/selectors/ros": {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
@@ -474,11 +474,48 @@ export const openapiSpec: OpenAPIObject = {
       },
     },
 
-     "/api/v2/trends/endrange/selectors": {
+    "/api/v2/trends/selectors/endrange": {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
         security: [{ ApiKeyAuth: [] }],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
+
+    "/api/v2/trends/top-players/{piller}": {
+      get: {
+        tags: ["Trends"],
+        summary: "Top rows by feature",
+        // security: [{ ApiKeyAuth: [] }],
+        parameters: [
+          { $ref: "#/components/parameters/PillerParam" },
+          {
+            name: "rank_group",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Ranking bucket (e.g., top_10, top_11_50)",
+          },
+          {
+            name: "serve_call",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Serve call (e.g., first_serve_in, second_serve_in)",
+          },
+          {
+            name: "feature",
+            in: "query",
+            required: false,
+            schema: { type: "string" },
+            description: "Feature Metric (e.g., fast_arm, leg_drive)",
+          },
+        ],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
