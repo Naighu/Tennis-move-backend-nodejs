@@ -2,6 +2,7 @@ import { SSMClient, GetParameterCommand } from "@aws-sdk/client-ssm";
 import { log } from "console";
 import jwt, { JwtHeader, JwtPayload } from "jsonwebtoken";
 import jwkToPem from "jwk-to-pem";
+import { AppError } from "../types/error.type";
 
 let jwksCache: any | null = null;
 
@@ -57,14 +58,20 @@ export async function verifyJwt(token: string): Promise<JwtPayload> {
   const decoded = jwt.decode(token, { complete: true });
 
   if (!decoded || typeof decoded === "string") {
-    throw new Error("Invalid JWT");
+    throw new AppError("VALIDATION_ERROR", "Invalid JWT");
   }
 
   const { kid } = decoded.header as JwtHeader;
 
-  const key = await getJwks();
+  const jwks = await getJwks();
+  const key = jwks.keys.find((k: any) => k.kid === kid);
+
+  if (!key) {
+    throw new AppError("VALIDATION_ERROR", "Invalid JWT");
+  }
+  
   if (key.kid != kid) {
-    throw new Error("Signing key not found");
+    throw new AppError("VALIDATION_ERROR", "Invalid JWT");
   }
 
   const pem = jwkToPem(key);

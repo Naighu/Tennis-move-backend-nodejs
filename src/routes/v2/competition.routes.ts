@@ -12,7 +12,7 @@ router.get("/selectors" , getSelectors);
 router.get("/athletes", validateAjv({ query: competitionGetAtheletesBodySchema }), getAthletes);
 router.get("/match-ids", validateAjv({ query: competitionGetMatchPrimaryKeyBodySchema }), getMatchPrimaryKeys);
 
-router.post("/table-data/:piller", validateAjv({
+router.get("/table-data/:piller", validateAjv({
     query: competitionGetTableDataBodySchema, params: {
         type: "object",
         required: ["piller"],
@@ -20,6 +20,7 @@ router.post("/table-data/:piller", validateAjv({
             piller: { type: "string", enum: Object.values(Piller) },
         }
     }}), getTableData);
+
 router.get("/video", validateAjv({ query: competitionGetSelectedVideosBodySchema }), getSelectedVideos);
 
 

@@ -19,10 +19,11 @@ export async function authMiddleware(
 
     const token = authHeader.split(" ")[1];
     const payload = await verifyJwt(token);
-
+    
     const access_token_sub = payload.sub;
     const user_email = payload.email;
-
+    console.log(payload);
+    
     if (!access_token_sub || !user_email) {
       next(new AppError("AUTH_REQUIRED", "Missing Authorization header", undefined));
       return;
