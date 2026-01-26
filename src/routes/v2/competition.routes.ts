@@ -5,10 +5,9 @@ import { competitionGetAtheletesBodySchema, competitionGetMatchPrimaryKeyBodySch
 
 import { getAthletes, getSelectors, getSelectedVideos, getTableData, getMatchPrimaryKeys } from "../../controller/competition/v2/competition.controller";
 import { Piller } from "../../types";
-import { authMiddleware } from "../../middleware/authMiddleware";
 const router = Router();
 
-router.get("/selectors",authMiddleware , getSelectors);
+router.get("/selectors" , getSelectors);
 
 router.get("/athletes", validateAjv({ query: competitionGetAtheletesBodySchema }), getAthletes);
 router.get("/match-ids", validateAjv({ query: competitionGetMatchPrimaryKeyBodySchema }), getMatchPrimaryKeys);

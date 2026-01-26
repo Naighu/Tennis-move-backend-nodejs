@@ -13,18 +13,20 @@ export async function authMiddleware(
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return sendError(res, 401, "401", "Missing Authorization header");
+      next(new AppError("AUTH_REQUIRED", "Missing Authorization header", undefined));
+      return;
     }
 
     const token = authHeader.split(" ")[1];
     const payload = await verifyJwt(token);
-    console.log(payload);
-    
+
     const access_token_sub = payload.sub;
     const user_email = payload.email;
 
     if (!access_token_sub || !user_email) {
-      return sendError(res, 401, "401", "Invalid token: missing subject or email");
+      next(new AppError("AUTH_REQUIRED", "Missing Authorization header", undefined));
+      return;
+
     }
 
     req.user = {
@@ -35,12 +37,10 @@ export async function authMiddleware(
 
     next();
   } catch (err: any) {
-    console.log(err);
-    
     if (err instanceof AppError) {
       next(err);
     } else {
-      next(new AppError("INTERNAL", err, undefined));
+      next(new AppError("AUTH_REQUIRED", err, undefined));
     }
   }
 }

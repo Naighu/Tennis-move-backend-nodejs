@@ -8,9 +8,14 @@ export const openapiSpec: OpenAPIObject = {
     { name: "Trends", description: "Trends endpoints" },
     { name: "Competition", description: "Competition endpoints" },
   ],
+  security: [
+    {
+      BearerAuth: []
+    }
+  ],
   components: {
     securitySchemes: {
-      ApiKeyAuth: { type: "apiKey", in: "header", name: "X-API-Key" },
+      BearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
     },
     schemas: {
       ApiSuccess: {
@@ -267,7 +272,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Competition"],
         summary: "Get selectors for competition",
-        security: [{ ApiKeyAuth: [] }],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
@@ -280,7 +284,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Competition"],
         summary: "List athletes by tournament/year/population",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/YearParam" },
           { $ref: "#/components/parameters/PopulationParam" },
@@ -300,7 +303,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Competition"],
         summary: "Get competition match id primary key",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/YearParam" },
           { $ref: "#/components/parameters/TournamentIdParam" },
@@ -318,7 +320,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Competition"],
         summary: "Get competition table data",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/PrimaryKeyParam" },
           { $ref: "#/components/parameters/PillerParam" },
@@ -334,7 +335,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Competition"],
         summary: "Get selected competition videos",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/PrimaryKeyParam" },
           { $ref: "#/components/parameters/CameraAngleParam" },
@@ -352,7 +352,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
-        security: [{ ApiKeyAuth: [] }],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
@@ -364,7 +363,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/TableParam" },
           { $ref: "#/components/parameters/YearParam" },
@@ -388,7 +386,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { $ref: "#/components/parameters/TableParam" },
           { $ref: "#/components/parameters/YearParam" },
@@ -411,7 +408,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Get selected competition videos",
-        security: [{ ApiKeyAuth: [] }],
         parameters: [
           { name: "selected_row", in: "query", schema: { type: "string" }, required: true },
           { name: "source", in: "query", schema: { type: "string" }, required: true },
@@ -429,7 +425,6 @@ export const openapiSpec: OpenAPIObject = {
       post: {
         tags: ["Trends"],
         summary: "Get win percentage for a set of players",
-        security: [{ ApiKeyAuth: [] }],
         requestBody: {
           required: true,
           content: {
@@ -452,7 +447,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
-        security: [{ ApiKeyAuth: [] }],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
@@ -465,7 +459,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
-        security: [{ ApiKeyAuth: [] }],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
@@ -478,7 +471,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Get selectors for trends",
-        security: [{ ApiKeyAuth: [] }],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
           "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
@@ -491,7 +483,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",
-        // security: [{ ApiKeyAuth: [] }],
         parameters: [
         
           {
@@ -527,7 +518,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",
-        // security: [{ ApiKeyAuth: [] }],
         parameters: [
           {
             name: "rank_group",
@@ -556,7 +546,6 @@ export const openapiSpec: OpenAPIObject = {
       get: {
         tags: ["Trends"],
         summary: "Top rows by feature",
-        // security: [{ ApiKeyAuth: [] }],
         parameters: [
           {
             name: "rank_group",

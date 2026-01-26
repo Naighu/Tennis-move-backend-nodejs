@@ -19,7 +19,7 @@ v2.use((req: Request, res: Response, next: NextFunction) => {
 v2.get("/status", (_req, res) => sendOk(res,{ version: "v2"}));
 
 // mount feature routers
-v2.use("/trends", trends);   // /api/v2/trends
-v2.use("/competition",  competition);   // /api/v2/competition
+v2.use("/trends", authMiddleware, trends);   // /api/v2/trends
+v2.use("/competition", authMiddleware, competition);   // /api/v2/competition
 
 export default v2;
