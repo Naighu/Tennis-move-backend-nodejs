@@ -18,7 +18,8 @@ export async function authMiddleware(
 
     const token = authHeader.split(" ")[1];
     const payload = await verifyJwt(token);
-
+    console.log(payload);
+    
     const access_token_sub = payload.sub;
     const user_email = payload.email;
 
@@ -34,6 +35,8 @@ export async function authMiddleware(
 
     next();
   } catch (err: any) {
+    console.log(err);
+    
     if (err instanceof AppError) {
       next(err);
     } else {
