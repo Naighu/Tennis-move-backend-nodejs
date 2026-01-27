@@ -72,10 +72,10 @@ export async function getMatchPrimaryKeys(req: Request, res: Response) {
 export async function getTableData(req: Request, res: Response) {
   try {
     const piller = req.params.piller as string;
-
     if (Object.values(Piller).includes(piller as Piller) === false)
       throw new AppError("VALIDATION_ERROR", "Invalid piller value", undefined);
     const body = req.query as unknown as CompetetitionGetTableDataBody;
+
     const rows = await queryDynamoDb<{ stats: any[] }>({
       TableName: "tennis-move",
       KeyConditionExpression: "primary_key = :pk AND begins_with(sort_key, :skPrefix)",
@@ -83,11 +83,15 @@ export async function getTableData(req: Request, res: Response) {
         ":pk": body.primary_key,
         ":skPrefix": `competition#${piller}`,
       },
-    });
+    });    
+    
     const result: any[] = [];
     for (const row of rows) {
+      
+      if((row.stats as any)[0]['player_id'] === body.player_id)
       result.push(...row.stats);
     }
+    
     return sendOk(res, result);
 
   } catch (err: any) {

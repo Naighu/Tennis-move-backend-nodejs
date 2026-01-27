@@ -323,6 +323,7 @@ export const openapiSpec: OpenAPIObject = {
         parameters: [
           { $ref: "#/components/parameters/PrimaryKeyParam" },
           { $ref: "#/components/parameters/PillerParam" },
+          { $ref: "#/components/parameters/AthleteIdParam" },
         ],
         responses: {
           "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },

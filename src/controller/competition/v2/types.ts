@@ -8,6 +8,7 @@ export interface CompetetitionGetAtheletesBody {
 
 export interface CompetetitionGetTableDataBody {
   primary_key: string;
+  player_id: string;
 }
 
 export interface CompetetitionGetMatchPrimaryKeysBody {
