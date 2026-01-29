@@ -21,7 +21,7 @@ export const TrendsTopPlayersBodySchema : SchemaObject= {
     filter_feature: { type: "string", enum: filterEnum },
     lower_value:    { type: "number" },
     upper_value:    { type: "number" },
-    pop:            { type: "string", enum:  Object.values(PopulationCategory).flat() },
+    pop:            { type: "string", enum:  Object.keys(PopulationCategory) },
     ranking_bracket:{ type: "string", default: "All", enum: rankingBracketEnum },
   }
 } as const;
@@ -37,7 +37,7 @@ export const TrendsDistributionBodySchema : SchemaObject= {
     filter_feature: { type: "string", enum: filterEnum },
     lower_value:    { type: "number" },
     upper_value:    { type: "number" },
-    pop:            { type: "string", enum:  Object.values(PopulationCategory).flat() },
+    pop:            { type: "string", enum:  Object.keys(PopulationCategory)  },
   }
 } as const;
 

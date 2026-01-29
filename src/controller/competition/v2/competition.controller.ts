@@ -19,6 +19,8 @@ export async function getSelectors(req: Request, res: Response) {
     const selectors = extractSelectors(matchListObject); return sendOk(res, selectors)
 
   } catch (err: any) {
+    console.log(err);
+    
     if (err instanceof AppError) {
       throw err;
     } else {
@@ -27,24 +29,14 @@ export async function getSelectors(req: Request, res: Response) {
   }
 }
 
-/*
-    Selects all athlete names and competition player id values from the list of available athletes who meet an input criteria
 
-    Args:
-        year (int, None): The competition year value
-        tid (str, None): The tournament id value
-        pop (str, None): A string representing a population (MS, WS, BS, or GS)
-
-    Returns:
-        JSONResponse: A json response of the athletes names and competition player id values from the athletes table given the desired year, tournament, and population.
-*/
 export async function getAthletes(req: Request, res: Response) {
   try {
 
     const body = req.query as unknown as CompetetitionGetAtheletesBody;
     const matchListObject = await fetchMatchList();
 
-    const players = extractAthletes(matchListObject, body.year.toString(), body.tid.toString(), body.pop);
+    const players = extractAthletes(matchListObject, body.year.toString(), body.tournament_name.toString(), body.pop);
     return sendOk(res, players);
 
   } catch (err: any) {
@@ -61,7 +53,7 @@ export async function getMatchPrimaryKeys(req: Request, res: Response) {
   try {
     const body = req.query as unknown as CompetetitionGetMatchPrimaryKeysBody;
     const matchListObject = await fetchMatchList();
-    const matchIds = extractMatchIds(matchListObject, body.year.toString(), body.tid.toString(), body.player_id.toString(), body.pop.toString());
+    const matchIds = extractMatchIds(matchListObject, body.year.toString(), body.player_id.toString(), body.pop.toString());
 
     return sendOk(res, matchIds);
   } catch (err: any) {

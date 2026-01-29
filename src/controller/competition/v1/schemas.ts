@@ -11,7 +11,7 @@ export const competitionGetAtheletesBodySchema: SchemaObject = {
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
-        pop: { type: "string", enum: Object.values(PopulationCategory).flat()  },
+        pop: { type: "string", enum: Object.keys(PopulationCategory) },
 
     }
 } as const;
@@ -27,7 +27,7 @@ export const competitionGetMatchIdsBodySchema: SchemaObject = {
     properties: {
 
         year: { type: "integer", minimum: 1900, maximum: 2100 },
-        pop: { type: "string", enum:  Object.values(PopulationCategory).flat() },
+        pop: { type: "string", enum:  Object.keys(PopulationCategory) },
         player_id: { type: "string" },
 
     }

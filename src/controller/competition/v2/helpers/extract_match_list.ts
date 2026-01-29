@@ -1,5 +1,5 @@
 import { getObjectStream, streamToString } from "../../../../services/s3";
-import { AWSKey, getPopulationKey, PopulationCategory } from "../../../../types";
+import { AWSKey, getPopulationKeyFromValue, PopulationCategory } from "../../../../types";
 
 
 type MatchList = {
@@ -9,9 +9,14 @@ type MatchList = {
 };
 
 
+type SelectorValue = {
+  code: string;
+  label: string;
+};
+
 type OutputData = {
   [year: string]: {
-    [tournamentCode: string]: string[];
+    [tournament: string]: SelectorValue[]
   };
 };
 
@@ -48,33 +53,39 @@ export function extractSelectors(data: MatchList): OutputData {
 
   for (const category of Object.keys(data)) {
     const players = data[category];
-    const formats = PopulationCategory[category];
-
+    
+    const formats = Object.values(PopulationCategory).includes(category as PopulationCategory)
+      ? [getPopulationKeyFromValue(category)]
+      : null;
     if (!formats) continue;
 
     for (const player of Object.values(players) as Player[]) {
       const details = player.details;
 
       for (const year of Object.keys(details)) {
-        result[year] ??= {};
+  result[year] ??= {};
 
-        const tournaments = details[year];
+  const tournaments = details[year];
 
-        for (const tournament of Object.values(tournaments)) {
-          for (const matchId of Object.values(tournament) as string[]) {
-            // Example: 2025_580_MS301
-            const [, tournamentCode] = matchId.split("_");
+  for (const tournament of Object.keys(tournaments)) {
+    result[year][tournament] ??= [];
 
-            result[year][tournamentCode] ??= [];
+    const matchIds = Object.values(tournaments[tournament]) as string[];
 
-            for (const format of formats) {
-              if (!result[year][tournamentCode].includes(format)) {
-                result[year][tournamentCode].push(format);
-              }
-            }
-          }
+   
+
+    for (const format of formats) {
+      const pop = {
+          code: format!,
+          label: PopulationCategory[format as keyof typeof PopulationCategory],
         }
+      if (!result[year][tournament].find(v => v['code'] === pop.code)) {
+        result[year][tournament].push(pop);
       }
+    }
+  }
+}
+
     }
   }
 
@@ -95,12 +106,12 @@ const formatAthleteName = (fullName: string): string => {
 export function extractAthletes(
   data: MatchList,
   year: string,
-  tournamentId: string,
+  tournamentName: string,
   population: string
 ): AthleteResult[] {
   const result: AthleteResult[] = [];
 
-  const populationKey = getPopulationKey(population);
+  const populationKey = PopulationCategory[population as keyof typeof PopulationCategory];
   if (!populationKey) return result;
 
   const players = data[populationKey];
@@ -114,23 +125,7 @@ export function extractAthletes(
     
     if (!yearData) continue;
 
-
-    let participated = false;
-
-    for (const tournament of Object.values(yearData)) {
-      for (const matchId of Object.values(tournament)) {
-        // Example: 2025_580_MS301
-        const [, tId] = matchId.split("_");
-
-        if (tId === tournamentId) {
-          participated = true;
-          break;
-        }
-      }
-      if (participated) break;
-    }
-
-    if (participated && !seen.has(player.player_id)) {
+    if (yearData[tournamentName] && !seen.has(player.player_id)) {
       seen.add(player.player_id);
       result.push({
         competition_player_id: player.player_id,
@@ -146,13 +141,12 @@ export function extractAthletes(
 export function extractMatchIds(
   data: MatchList,
   year: string,
-  tournamentId: string,
   playerId: string,
 
   population: string
 ): Record<string, any> {
   const result: Record<string, any> = {};
-  const populationKey = getPopulationKey(population);
+  const populationKey = PopulationCategory[population as keyof typeof PopulationCategory];
   if (!populationKey) return result;
 
   const players = data[populationKey];
