@@ -7,26 +7,22 @@ import { CameraAngles, PopulationCategory } from "../../../types";
 export const competitionGetAtheletesBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["year", "pop", "tournament_name"],
+    required: [ "pop"],
     properties: {
-
-        year: { type: "integer", minimum: 1900, maximum: 2100 },
-        pop: { type: "string", enum: Object.keys(PopulationCategory)  },
-        tournament_name: { type: "string" },
+        pop: { type: "string", enum: Object.values(PopulationCategory) },
     }
 } as const;
 
 export const competitionGetMatchPrimaryKeyBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
-    required: ["year", "pop", "player_id"],
+    required: [ "pop", "player_name"],
     properties: {
-
-        year: { type: "integer", minimum: 1900, maximum: 2100 },
-        pop: { type: "string", enum: Object.keys(PopulationCategory) },
-        player_id: { type: "string" },
+        pop: { type: "string", enum: Object.values(PopulationCategory) },
+        player_name: { type: "string" },
     }
 } as const;
+
 
 export const competitionGetTableDataBodySchema: SchemaObject = {
     type: "object",

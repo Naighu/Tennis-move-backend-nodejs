@@ -2,17 +2,20 @@ import type { OpenAPIObject } from "openapi3-ts/oas31";
 
 export const openapiSpec: OpenAPIObject = {
   openapi: "3.1.0",
-  info: { title: "Tennis Move API", version: "1.0.0" },
-  servers: [{ url: "http://localhost:4000" }],
+  info: { 
+    title: "Tennis Move API", 
+    description: "API for tennis performance analytics, covering individual competition data and circuit trends.",
+    version: "1.0.0" 
+  },
+  servers: [{ url: "http://localhost:4000", description: "Local Development Server" }],
+  security: [{ BearerAuth: [] }],
   tags: [
-    { name: "Trends", description: "Trends endpoints" },
-    { name: "Competition", description: "Competition endpoints" },
+    { name: "Competition V1", description: "Legacy match and athlete endpoints" },
+    { name: "Competition V2", description: "Pillar-based (Serve, ROS, Endrange) match analysis" },
+    { name: "Trends V1", description: "General circuit-wide statistics and leaderboards" },
+    { name: "Trends V2", description: "Specialized pillar-based trend analysis" },
   ],
-  security: [
-    {
-      BearerAuth: []
-    }
-  ],
+  
   components: {
     securitySchemes: {
       BearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
@@ -22,7 +25,7 @@ export const openapiSpec: OpenAPIObject = {
         type: "object",
         properties: {
           ok: { type: "boolean", const: true },
-          data: {}, // generic
+          data: { type: "object", description: "The response payload" },
           meta: {
             type: "object",
             properties: {
@@ -43,7 +46,7 @@ export const openapiSpec: OpenAPIObject = {
             properties: {
               code: { type: "string" },
               message: { type: "string" },
-              details: {},
+              details: { type: "object" },
             },
             required: ["code", "message"],
           },
@@ -58,8 +61,6 @@ export const openapiSpec: OpenAPIObject = {
         required: ["ok", "error"],
         additionalProperties: true,
       },
-
-      // NEW: request schema for win-percentage
       TrendsGetWinPercentageRequest: {
         type: "object",
         additionalProperties: false,
@@ -77,519 +78,84 @@ export const openapiSpec: OpenAPIObject = {
     },
 
     parameters: {
-      // Shared query params
-      YearParam: {
-        name: "year",
-        in: "query",
-        required: true,
-        schema: { type: "integer" },
-        description: "Season year (e.g., 2025)",
-      },
-      TournamentIdParam: {
-        name: "tid",
-        in: "query",
-        required: true,
-        schema: { type: "integer" },
-        description: "Tournament ID",
-      },
-      PopulationParam: {
-        name: "pop",
-        in: "query",
-        required: true,
-        schema: { type: "string", minLength: 1 },
-        description: "Population code (e.g., MS, WS)",
-      },
-      // Trends-specific
-      TableParam: {
-        name: "table",
-        in: "query",
-        required: true,
-        schema: { type: "string" },
-        description: "Source table (e.g., competition_serves)",
-      },
-      RankingBracketParam: {
-        name: "ranking_bracket",
-        in: "query",
-        required: false,
-        schema: { type: "string" },
-        description: "Ranking bucket (e.g., top_10, top_11_50)",
-      },
-      FeatureParam: {
-        name: "feature",
-        in: "query",
-        required: true,
-        schema: { type: "string" },
-        description: "Feature/metric name (e.g., fast_arm_ms)",
-      },
-      FilterFeatureParam: {
-        name: "filter_feature",
-        in: "query",
-        required: false,
-        schema: { type: "string" },
-        description: "Optional filter feature (e.g., serve_speed_kph_filt)",
-      },
-      LowerValueParam: {
-        name: "lower_value",
-        in: "query",
-        required: false,
-        schema: { type: "number" },
-        description: "Lower bound for filter",
-      },
-      UpperValueParam: {
-        name: "upper_value",
-        in: "query",
-        required: false,
-        schema: { type: "number" },
-        description: "Upper bound for filter",
-      },
-
-      // Competition/video-specific
-      AthleteIdParam: {
-        name: "player_id",
-        in: "query",
-        required: false,
-        schema: { type: "string" },
-        description: "Competition player identifier",
-      },
-      PrimaryKeyParam: {
-        name: "primary_key",
-        in: "query",
-        required: false,
-        schema: { type: "string" },
-        description: "Primary key for the match data",
-      },
-      PillerParam: {
-        name: "piller",
-        in: "path",
-        required: true,
-        schema: { type: "string" },
-        description: "Piller value(endrange, serve, ros)",
-      },
-      CameraAngleParam: {
-        name: "camera_angle",
-        in: "query",
-        required: false,
-        schema: { type: "string" },
-        description: "Camera angle (e.g., c1, c2, c3)",
-      },
-
+      // Shared
+      YearParam: { name: "year", in: "query", required: true, schema: { type: "integer" }, description: "Season year (e.g., 2025)" },
+      PopulationParam: { name: "pop", in: "query", required: true, schema: { type: "string", minLength: 1 }, description: "Population code (e.g., MS, WS)" },
+      TournamentIdParam: { name: "tid", in: "query", required: true, schema: { type: "integer" }, description: "Numeric Tournament ID" },
+      TournamentNameParam: { name: "tournament_name", in: "query", required: true, schema: { type: "string" }, description: "Full name of the tournament" },
+      AthleteIdParam: { name: "player_id", in: "query", required: false, schema: { type: "string" }, description: "Unique player identifier" },
+      AthleteNameParam: { name: "player_name", in: "query", required: false, schema: { type: "string" }, description: "Player's full name" },
+      PrimaryKeyParam: { name: "primary_key", in: "query", required: false, schema: { type: "string" }, description: "Primary key for the specific match record" },
+      
+      // Feature Specifics
+      TableParam: { name: "table", in: "query", required: true, schema: { type: "string" }, description: "Source database table" },
+      FeatureParam: { name: "feature", in: "query", required: true, schema: { type: "string" }, description: "Metric name (e.g., fast_arm_ms)" },
+      PillerParam: { name: "piller", in: "path", required: true, schema: { type: "string", enum: ["endrange", "serve", "ros"] }, description: "Specific analysis pillar" },
+      RankingBracketParam: { name: "ranking_bracket", in: "query", required: false, schema: { type: "string" }, description: "Ranking bucket (top_10, etc.)" },
     },
   },
 
   paths: {
-
-
+    // --- COMPETITION V1 ---
     "/api/v1/competition/selectors": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get selectors for competition",
-        security: [{ ApiKeyAuth: [] }],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V1"], summary: "Get legacy competition selectors", responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-
     "/api/v1/competition/athletes": {
-      get: {
-        tags: ["Competition"],
-        summary: "List athletes by tournament/year/population",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/PopulationParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
-
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V1"], parameters: [{ $ref: "#/components/parameters/YearParam" }, { $ref: "#/components/parameters/PopulationParam" }, { $ref: "#/components/parameters/TournamentIdParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-
     "/api/v1/competition/table-data": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get competition table data (by year/tournament/population/feature)",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          { $ref: "#/components/parameters/TableParam" },
-          { $ref: "#/components/parameters/ReferenceMatchIdParam" },
-          { $ref: "#/components/parameters/AthleteIdParam" },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V1"], parameters: [{ $ref: "#/components/parameters/TableParam" }, { $ref: "#/components/parameters/AthleteIdParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-
-    "/api/v1/competition/video": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get selected competition videos",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          { name: "match", in: "query", schema: { type: "string" }, required: true },
-          { name: "source", in: "query", schema: { type: "string" }, required: true },
-          { name: "camera", in: "query", schema: { type: "string" }, required: true },
-          { name: "selected_row", in: "query", schema: { type: "string" }, required: true },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
     "/api/v1/competition/match-id": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get match id",
-        security: [{ ApiKeyAuth: [] }],
-        parameters: [
-          { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/PopulationParam" },
-          { $ref: "#/components/parameters/AthleteIdParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
-
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V1"], parameters: [{ $ref: "#/components/parameters/YearParam" }, { $ref: "#/components/parameters/PopulationParam" }, { $ref: "#/components/parameters/AthleteIdParam" }, { $ref: "#/components/parameters/TournamentIdParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+    },
+    "/api/v1/competition/video": {
+      get: { tags: ["Competition V1"], parameters: [{ name: "match", in: "query", required: true, schema: { type: "string" } }, { name: "selected_row", in: "query", required: true, schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
 
-    "/api/v2/competition/selectors": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get selectors for competition",
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+    // --- COMPETITION V2 ---
+    "/api/v2/competition/populations": {
+      get: { tags: ["Competition V2"], summary: "Fetch populations for v2 flow", responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-
-    "/api/v2/competition/athletes": {
-      get: {
-        tags: ["Competition"],
-        summary: "List athletes by tournament/year/population",
-        parameters: [
-          { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/PopulationParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
-
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+     "/api/v2/competition/athletes": {
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PopulationParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-
-
     "/api/v2/competition/match-ids": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get competition match id primary key",
-        parameters: [
-          { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/TournamentIdParam" },
-          { $ref: "#/components/parameters/PopulationParam" },
-          { $ref: "#/components/parameters/AthleteIdParam" },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PopulationParam" }, { $ref: "#/components/parameters/AthleteNameParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/competition/table-data/{piller}": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get competition table data",
-        parameters: [
-          { $ref: "#/components/parameters/PrimaryKeyParam" },
-          { $ref: "#/components/parameters/PillerParam" },
-          { $ref: "#/components/parameters/AthleteIdParam" },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PillerParam" }, { $ref: "#/components/parameters/PrimaryKeyParam" }, { $ref: "#/components/parameters/AthleteIdParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/competition/camera-angles": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get available camera angles for a match",
-        parameters: [
-          { $ref: "#/components/parameters/PrimaryKeyParam" },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/competition/video": {
-      get: {
-        tags: ["Competition"],
-        summary: "Get selected competition videos",
-        parameters: [
-          { $ref: "#/components/parameters/PrimaryKeyParam" },
-          { $ref: "#/components/parameters/CameraAngleParam" },
-          { name: "video_key", in: "query", schema: { type: "string" }, required: true },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }, { name: "video_key", in: "query", required: true, schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
 
+    // --- TRENDS V1 ---
     "/api/v1/trends/selectors": {
-      get: {
-        tags: ["Trends"],
-        summary: "Get selectors for trends",
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Trends V1"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v1/trends/top-players": {
-      get: {
-        tags: ["Trends"],
-        summary: "Top rows by feature",
-        parameters: [
-          { $ref: "#/components/parameters/TableParam" },
-          { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/RankingBracketParam" },
-          { $ref: "#/components/parameters/FeatureParam" },
-          { $ref: "#/components/parameters/FilterFeatureParam" },
-          { $ref: "#/components/parameters/LowerValueParam" },
-          { $ref: "#/components/parameters/UpperValueParam" },
-          { $ref: "#/components/parameters/PopulationParam" },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Trends V1"], parameters: [{ $ref: "#/components/parameters/TableParam" }, { $ref: "#/components/parameters/YearParam" }, { $ref: "#/components/parameters/FeatureParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-
-
-    "/api/v1/trends/distribution": {
-      get: {
-        tags: ["Trends"],
-        summary: "Top rows by feature",
-        parameters: [
-          { $ref: "#/components/parameters/TableParam" },
-          { $ref: "#/components/parameters/YearParam" },
-          { $ref: "#/components/parameters/RankingBracketParam" },
-          { $ref: "#/components/parameters/FeatureParam" },
-          { $ref: "#/components/parameters/FilterFeatureParam" },
-          { $ref: "#/components/parameters/LowerValueParam" },
-          { $ref: "#/components/parameters/UpperValueParam" },
-          { $ref: "#/components/parameters/PopulationParam" },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
-    "/api/v1/trends/video": {
-      get: {
-        tags: ["Trends"],
-        summary: "Get selected competition videos",
-        parameters: [
-          { name: "selected_row", in: "query", schema: { type: "string" }, required: true },
-          { name: "source", in: "query", schema: { type: "string" }, required: true },
-          { name: "camera", in: "query", schema: { type: "string" }, required: true },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
     "/api/v1/trends/win-percentage": {
-      post: {
-        tags: ["Trends"],
-        summary: "Get win percentage for a set of players",
-        requestBody: {
-          required: true,
-          content: {
-            "application/json": {
-              schema: { $ref: "#/components/schemas/TrendsGetWinPercentageRequest" },
-            },
-          },
-        },
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      post: { tags: ["Trends V1"], requestBody: { content: { "application/json": { schema: { $ref: "#/components/schemas/TrendsGetWinPercentageRequest" } } } }, responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
 
-
-
-    "/api/v2/trends/selectors/serve": {
-      get: {
-        tags: ["Trends"],
-        summary: "Get selectors for trends",
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
-    "/api/v2/trends/selectors/ros": {
-      get: {
-        tags: ["Trends"],
-        summary: "Get selectors for trends",
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
-    "/api/v2/trends/selectors/endrange": {
-      get: {
-        tags: ["Trends"],
-        summary: "Get selectors for trends",
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
+    // --- TRENDS V2 ---
+    "/api/v2/trends/selectors/serve": { get: { tags: ["Trends V2"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } } },
+    "/api/v2/trends/selectors/ros": { get: { tags: ["Trends V2"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } } },
+    "/api/v2/trends/selectors/endrange": { get: { tags: ["Trends V2"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } } },
     "/api/v2/trends/top-players/serve": {
-      get: {
-        tags: ["Trends"],
-        summary: "Top rows by feature",
-        parameters: [
-        
-          {
-            name: "rank_group",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Ranking bucket (e.g., top_10, top_11_50)",
-          },
-          {
-            name: "serve_call",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Serve call (e.g., first_serve_in, second_serve_in)",
-          },
-          {
-            name: "feature",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Feature Metric (e.g., fast_arm, leg_drive)",
-          },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Trends V2"], parameters: [{ name: "serve_call", in: "query", schema: { type: "string" } }, { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+    },
+    "/api/v2/trends/top-players/ros": {
+      get: { tags: ["Trends V2"], parameters: [{ name: "return_shot_type", in: "query", schema: { type: "string" } }, { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/trends/top-players/endrange": {
-      get: {
-        tags: ["Trends"],
-        summary: "Top rows by feature",
-        parameters: [
-          {
-            name: "rank_group",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Ranking bucket (e.g., top_10, top_11_50)",
-          },
-          {
-            name: "feature",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Feature Metric (e.g., dist_in, max_accel)",
-          },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
-    },
-
-    "/api/v2/trends/top-players/ros": {
-      get: {
-        tags: ["Trends"],
-        summary: "Top rows by feature",
-        parameters: [
-          {
-            name: "rank_group",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Ranking bucket (e.g., top_10, top_11_50)",
-          },
-           {
-            name: "return_shot_type",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Return shot type (e.g., forehand, backhand)",
-          },
-          {
-            name: "feature",
-            in: "query",
-            required: false,
-            schema: { type: "string" },
-            description: "Feature Metric (e.g., split_timing, movement_velocity)",
-          },
-        ],
-        responses: {
-          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
-          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
-        },
-      },
+      get: { tags: ["Trends V2"], parameters: [{ name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
   },
 };

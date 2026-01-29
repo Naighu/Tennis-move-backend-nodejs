@@ -2,25 +2,19 @@ import { Request, Response } from "express";
 import { sendNoContent, sendOk } from "../../../utils/respond";
 import { AppError } from "../../../types/error.type";
 import { CompetetitionGetAtheletesBody, CompetetitionGetAvailableCameraAnglesBody, CompetetitionGetMatchPrimaryKeysBody, CompetetitionGetSelectedVideosBody, CompetetitionGetTableDataBody } from "./types";
-import { getObjectStream, listObjectsInS3, presignGet, streamToString } from "../../../services/s3";
-import { extractAthletes, extractMatchIds, extractSelectors, fetchMatchList } from "./helpers/extract_match_list";
+import { listObjectsInS3, presignGet } from "../../../services/s3";
+import { fetchMatchList } from "./helpers/extract_match_list";
 import { queryDynamoDb } from "../../../services/dyanmo_db";
-import { AWSKey, CameraAngles, getCameraAngleKey, Piller } from "../../../types";
+import { AWSKey, CameraAngles, getCameraAngleKey, Piller, PopulationCategory } from "../../../types";
 
 
 
 
-export async function getSelectors(req: Request, res: Response) {
+export async function getPopulation(req: Request, res: Response) {
   try {
-
-    const matchListObject = await fetchMatchList();
-
-    //Extrac selectors from the match-list object
-    const selectors = extractSelectors(matchListObject); return sendOk(res, selectors)
-
+    const populations = Object.values(PopulationCategory);
+    return sendOk(res, populations);
   } catch (err: any) {
-    console.log(err);
-    
     if (err instanceof AppError) {
       throw err;
     } else {
@@ -28,16 +22,38 @@ export async function getSelectors(req: Request, res: Response) {
     }
   }
 }
+export async function getMatchPrimaryKeys(req: Request, res: Response) {
+  try {
+    const body = req.query as unknown as CompetetitionGetMatchPrimaryKeysBody;
 
+    const matchListObject = await fetchMatchList();
+    const selectors = matchListObject[body.pop][body.player_name]["details"];
+    return sendOk(res, selectors);
+
+  } catch (err: any) {
+    console.log(err);
+
+    if (err instanceof AppError) {
+      throw err;
+    } else {
+      throw new AppError("INTERNAL", err, undefined);
+    }
+  }
+
+}
 
 export async function getAthletes(req: Request, res: Response) {
   try {
 
     const body = req.query as unknown as CompetetitionGetAtheletesBody;
     const matchListObject = await fetchMatchList();
+    const players = Object.keys(matchListObject[body.pop])
+    const result = [];
+    for (const player of players) {
+      result.push({ player_name: player, player_id: matchListObject[body.pop][player]['player_id'] });
+    }
 
-    const players = extractAthletes(matchListObject, body.year.toString(), body.tournament_name.toString(), body.pop);
-    return sendOk(res, players);
+    return sendOk(res, result);
 
   } catch (err: any) {
     if (err instanceof AppError) {
@@ -48,18 +64,6 @@ export async function getAthletes(req: Request, res: Response) {
   }
 }
 
-
-export async function getMatchPrimaryKeys(req: Request, res: Response) {
-  try {
-    const body = req.query as unknown as CompetetitionGetMatchPrimaryKeysBody;
-    const matchListObject = await fetchMatchList();
-    const matchIds = extractMatchIds(matchListObject, body.year.toString(), body.player_id.toString(), body.pop.toString());
-
-    return sendOk(res, matchIds);
-  } catch (err: any) {
-    throw new AppError("INTERNAL", err, undefined);
-  }
-}
 
 export async function getTableData(req: Request, res: Response) {
   try {
@@ -75,15 +79,15 @@ export async function getTableData(req: Request, res: Response) {
         ":pk": body.primary_key,
         ":skPrefix": `competition#${piller}`,
       },
-    });    
-    
+    });
+
     const result: any[] = [];
     for (const row of rows) {
-      
-      if((row.stats as any)[0]['player_id'] === body.player_id)
-      result.push(...row.stats);
+
+      if ((row.stats as any)[0]['player_id'] === body.player_id)
+        result.push(...row.stats);
     }
-    
+
     return sendOk(res, result);
 
   } catch (err: any) {
@@ -103,11 +107,11 @@ export async function getAvailableCameraAngles(req: Request, res: Response) {
     const objects = await listObjectsInS3(AWSKey.TennisMoveBucket, video_prefix);
 
     const angles = objects.CommonPrefixes?.map((prefixObj) => {
-      const angle =  prefixObj.Prefix?.split("/")[4].split("=")[1];      
+      const angle = prefixObj.Prefix?.split("/")[4].split("=")[1];
       return CameraAngles[getCameraAngleKey(angle!) as keyof typeof CameraAngles];
     });
 
-   
+
     return sendOk(res, angles);
   } catch (err: any) {
     if (err instanceof AppError) {

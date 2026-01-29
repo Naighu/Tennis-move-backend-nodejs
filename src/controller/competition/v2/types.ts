@@ -1,19 +1,16 @@
 import { CameraAngles, Piller } from "../../../types";
 
 export interface CompetetitionGetAtheletesBody {
-  year: number;
   pop: string;
-  tournament_name: string;
+}
+
+export interface CompetetitionGetMatchPrimaryKeysBody {
+  pop: string;
+  player_name: string
 }
 
 export interface CompetetitionGetTableDataBody {
   primary_key: string;
-  player_id: string;
-}
-
-export interface CompetetitionGetMatchPrimaryKeysBody {
-  year: number;
-  pop: string;
   player_id: string;
 }
 
