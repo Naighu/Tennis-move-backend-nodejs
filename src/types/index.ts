@@ -24,7 +24,6 @@ export enum Piller {
 export enum PopulationCategory {
   MS = "Men's Singles",
   WS  = "Women's Singles",
-  BS  = "Men's Qualifying Singles",
   WSQ = "Women's Qualifying Singles",
   MSQ = "Men's Qualifying Singles",
 }
