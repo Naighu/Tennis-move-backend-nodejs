@@ -1,5 +1,5 @@
 import { SchemaObject } from "ajv";
-import { CameraAngle, PopulationCategory } from "../../../types";
+import { CameraAngles, PopulationCategory } from "../../../types";
 
 
 
@@ -38,6 +38,15 @@ export const competitionGetTableDataBodySchema: SchemaObject = {
     }
 } as const;
 
+export const competitionGetAvailableCameraAnglesBodySchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["primary_key"],
+    properties: {
+        primary_key: { type: "string" },
+    }
+} as const;
+
 export const competitionGetSelectedVideosBodySchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
@@ -45,6 +54,6 @@ export const competitionGetSelectedVideosBodySchema: SchemaObject = {
     properties: {
         video_key: { type: "string" },
         primary_key: { type: "string" },
-        camera_angle: { type: "string", enum: Object.values(CameraAngle) },
+        camera_angle: { type: "string", enum: Object.values(CameraAngles).map(angle => angle.angle) },
     }
 } as const;

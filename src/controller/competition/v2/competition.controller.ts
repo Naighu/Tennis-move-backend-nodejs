@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { sendNoContent, sendOk } from "../../../utils/respond";
 import { AppError } from "../../../types/error.type";
-import { CompetetitionGetAtheletesBody, CompetetitionGetMatchPrimaryKeysBody, CompetetitionGetSelectedVideosBody, CompetetitionGetTableDataBody } from "./types";
-import { getObjectStream, presignGet, streamToString } from "../../../services/s3";
+import { CompetetitionGetAtheletesBody, CompetetitionGetAvailableCameraAnglesBody, CompetetitionGetMatchPrimaryKeysBody, CompetetitionGetSelectedVideosBody, CompetetitionGetTableDataBody } from "./types";
+import { getObjectStream, listObjectsInS3, presignGet, streamToString } from "../../../services/s3";
 import { extractAthletes, extractMatchIds, extractSelectors, fetchMatchList } from "./helpers/extract_match_list";
 import { queryDynamoDb } from "../../../services/dyanmo_db";
-import { AWSKey, Piller } from "../../../types";
+import { AWSKey, CameraAngles, getCameraAngleKey, Piller } from "../../../types";
 
 
 
@@ -96,6 +96,33 @@ export async function getTableData(req: Request, res: Response) {
 
   } catch (err: any) {
     throw new AppError("INTERNAL", err, undefined);
+  }
+}
+
+
+export async function getAvailableCameraAngles(req: Request, res: Response) {
+  try {
+    const body = req.query as unknown as CompetetitionGetAvailableCameraAnglesBody;
+    const year = body.primary_key.split("_")[0];
+    const tournament_id = body.primary_key.split("_")[1];
+    const match_id = body.primary_key.split("_")[2];
+    const video_prefix = `video/year=${year}/competition=${tournament_id}/match=${match_id}/`;
+
+    const objects = await listObjectsInS3(AWSKey.TennisMoveBucket, video_prefix);
+
+    const angles = objects.CommonPrefixes?.map((prefixObj) => {
+      const angle =  prefixObj.Prefix?.split("/")[4].split("=")[1];      
+      return CameraAngles[getCameraAngleKey(angle!) as keyof typeof CameraAngles];
+    });
+
+   
+    return sendOk(res, angles);
+  } catch (err: any) {
+    if (err instanceof AppError) {
+      throw err;
+    } else {
+      throw new AppError("INTERNAL", err, undefined);
+    }
   }
 }
 

@@ -8,9 +8,9 @@ export const s3 = new S3Client({
   region: process.env.AWS_REGION || "sydney"
 });
 
-export async function list(bucket: string, prefix = "") {
-  const out = await s3.send(new ListObjectsV2Command({ Bucket: bucket, Prefix: prefix }));
-  return out.Contents ?? [];
+export async function listObjectsInS3(bucket: string, prefix = "") {
+  const out = await s3.send(new ListObjectsV2Command({ Bucket: bucket, Prefix: prefix,Delimiter: "/" }));
+  return out
 }
 
 export async function getObjectStream(bucket: string, key: string) {

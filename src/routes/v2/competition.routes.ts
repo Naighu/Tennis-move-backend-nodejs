@@ -1,9 +1,9 @@
 import { Router } from "express";
 
 import { validateAjv } from "../../middleware/validateAjv";
-import { competitionGetAtheletesBodySchema, competitionGetMatchPrimaryKeyBodySchema, competitionGetSelectedVideosBodySchema, competitionGetTableDataBodySchema } from "../../controller/competition/v2/schemas";
+import { competitionGetAtheletesBodySchema, competitionGetAvailableCameraAnglesBodySchema, competitionGetMatchPrimaryKeyBodySchema, competitionGetSelectedVideosBodySchema, competitionGetTableDataBodySchema } from "../../controller/competition/v2/schemas";
 
-import { getAthletes, getSelectors, getSelectedVideos, getTableData, getMatchPrimaryKeys } from "../../controller/competition/v2/competition.controller";
+import { getAthletes, getSelectors, getSelectedVideos, getTableData, getMatchPrimaryKeys, getAvailableCameraAngles } from "../../controller/competition/v2/competition.controller";
 import { Piller } from "../../types";
 const router = Router();
 
@@ -20,6 +20,8 @@ router.get("/table-data/:piller", validateAjv({
             piller: { type: "string", enum: Object.values(Piller) },
         }
     }}), getTableData);
+
+router.get("/camera-angles", validateAjv({ query: competitionGetAvailableCameraAnglesBodySchema }), getAvailableCameraAngles);
 
 router.get("/video", validateAjv({ query: competitionGetSelectedVideosBodySchema }), getSelectedVideos);
 

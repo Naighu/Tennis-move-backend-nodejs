@@ -332,6 +332,20 @@ export const openapiSpec: OpenAPIObject = {
         },
       },
     },
+    "/api/v2/competition/camera-angles": {
+      get: {
+        tags: ["Competition"],
+        summary: "Get available camera angles for a match",
+        parameters: [
+          { $ref: "#/components/parameters/PrimaryKeyParam" },
+        ],
+        responses: {
+          "200": { description: "OK", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } },
+          "400": { description: "Bad Request", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+          "401": { description: "Unauthorized", content: { "application/json": { schema: { $ref: "#/components/schemas/ApiError" } } } },
+        },
+      },
+    },
     "/api/v2/competition/video": {
       get: {
         tags: ["Competition"],

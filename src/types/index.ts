@@ -1,3 +1,5 @@
+import { title } from "node:process";
+
 export enum Piller {
   SERVE = "serve",
   RETURN_OF_SERVE = "ros",
@@ -17,15 +19,22 @@ export const getPopulationKey = (population: string): string | undefined => {
     PopulationCategory[key].includes(population)
   );
 };
-export enum CameraAngle {
-  C1 = "c1",
-  C2 = "c2",
-  C3 = "c3",
-  C4 = "c4",
-  C25 = "c25",
-  C26 = "c26",
+export const CameraAngles = {
+  C1: { angle: "c1", description: "Main Broadcast Angle", title: "Main" },
+  C2: { angle: "c2", description: "C2", title: "C2" },
+  C3: { angle: "c3", description: "C3", title: "C3" },
+  C4: { angle: "c4", description: "C4", title: "C4" },
+  C5 : { angle: "c5", description: "C5", title: "C5" },
+  C25: { angle: "c25", description: "C25", title: "C25" },
+  C26: { angle: "c26", description: "C26", title: "C26" },
+};
+// Helper function to get camera angle key from CameraAngles
 
-}
+export const getCameraAngleKey = (angle: string): string | undefined => {
+  return Object.keys(CameraAngles).find((key) =>
+    CameraAngles[key as keyof typeof CameraAngles].angle === angle
+  );
+};
 
 
 export enum RankGroupEnum {
