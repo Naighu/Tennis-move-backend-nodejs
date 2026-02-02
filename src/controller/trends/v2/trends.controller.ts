@@ -7,7 +7,8 @@ import { ServeFeatureMetrics, ServeCalls } from "../../../types/serve.type";
 import { RosFeatureMetrics, RosReturnShotTypes } from "../../../types/ros.type";
 import { EndrangeFeatureMetrics } from "../../../types/endrange.type";
 import { fetchTrendsData, getTrendsSelectorCondition } from "./helpers/extract_trends_data";
-import { GetTrendsEndrangeTopPlayersParams, GetTrendsRosTopPlayersParams, GetTrendsServeTopPlayersParams, GetTrendsTopPlayersBaseParams } from "./types";
+import { GetTrendsEndrangeTopPlayersParams, GetTrendsRosTopPlayersParams, GetTrendsServeTopPlayersParams, GetTrendsOverviewParams } from "./types";
+import { computeCV } from "./helpers/compute_cv";
 
 export async function getServeSelectors(req: Request, res: Response) {
   try {
@@ -51,18 +52,64 @@ export async function getEndrangeSelectors(req: Request, res: Response) {
 }
 
 
+export async function getTrendsOverview(req: Request, res: Response) {
+  try {
+
+
+    const piller = req.path.split("/").filter(Boolean).at(0) as Piller;
+
+    if(piller === undefined) {
+      throw new AppError("NOT_FOUND", null, "Piller not specified in the path");
+    }
+    let body = req.query as unknown as GetTrendsOverviewParams;
+
+    const data = await fetchTrendsData(piller);
+
+    const grouped = data.reduce((acc, row) => {
+      if (!acc[row.rank_group]) acc[row.rank_group] = [];
+      acc[row.rank_group].push(row);
+      return acc;
+    }, {});
+
+    const trendsByRank: Record<string, any> = {};
+
+    for (const [rankGroup, value] of Object.entries(grouped)) {
+      let rows = (value as any[]).map((r: any) => ({
+        rank_group: r.rank_group,
+        n: r.n,
+        avg_mean: r[`avg_${body.feature}`],
+        sd_mean: r[`sd_${body.feature}`]
+      }));
+      trendsByRank[rankGroup] = computeCV(rows);
+    }
+    return sendOk(res, trendsByRank);
+  } catch (err: any) {
+    console.log(err);
+
+    if (err instanceof AppError) {
+      throw err;
+    } else {
+      throw new AppError("INTERNAL", err, undefined);
+    }
+  }
+}
+
 export async function getTopPlayers(req: Request, res: Response) {
   try {
-    const piller = req.path.split("/").pop() as Piller;
+    const piller = req.path.split("/").filter(Boolean).at(0) as Piller;
+
+    if(piller === undefined) {
+      throw new AppError("NOT_FOUND", null, "Piller not specified in the path");
+    }
     let body = req.query as unknown as GetTrendsServeTopPlayersParams
       | GetTrendsRosTopPlayersParams
       | GetTrendsEndrangeTopPlayersParams;
 
-    
+
 
     const data = await fetchTrendsData(piller);
 
-   
+
     const feature = body.feature;
 
 
@@ -98,8 +145,10 @@ export async function getTopPlayers(req: Request, res: Response) {
 
     return sendOk(res, filteredAndSortedData);
   } catch (err: any) {
-    console.log(err);
-
-    throw new AppError("INTERNAL", err, undefined);
+    if (err instanceof AppError) {
+      throw err;
+    } else {
+      throw new AppError("INTERNAL", err, undefined);
+    }
   }
 }

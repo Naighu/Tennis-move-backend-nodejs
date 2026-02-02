@@ -1,5 +1,5 @@
 import { getObjectStream, streamToString } from "../../../../services/s3";
-import { AWSKey, Piller } from "../../../../types";
+import { AWSKey, Piller, RankGroupEnum } from "../../../../types";
 import { expandServeCall } from "../../../../types/serve.type";
 import { GetTrendsEndrangeTopPlayersParams, GetTrendsRosTopPlayersParams, GetTrendsServeTopPlayersParams } from "../types";
 
@@ -14,6 +14,12 @@ export async function fetchTrendsData(piller: Piller): Promise<Record<string, an
   return dataObject['data'];
 } 
 
+
+export async function fetchTrendsDataByFeatureAndRank(piller: Piller, rank_group: RankGroupEnum, feature: string): Promise<Record<string, any>[]> {
+  const data = await fetchTrendsData(piller);
+  const filtered =  data.filter(item => item[`avg_${feature}`] !== undefined && item.rank_group === rank_group)
+  return filtered;
+}
 
 export function getTrendsSelectorCondition(item: Record<string, any>, piller: Piller, body: GetTrendsServeTopPlayersParams
       | GetTrendsRosTopPlayersParams

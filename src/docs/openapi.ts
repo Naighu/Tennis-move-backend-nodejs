@@ -2,10 +2,10 @@ import type { OpenAPIObject } from "openapi3-ts/oas31";
 
 export const openapiSpec: OpenAPIObject = {
   openapi: "3.1.0",
-  info: { 
-    title: "Tennis Move API", 
+  info: {
+    title: "Tennis Move API",
     description: "API for tennis performance analytics, covering individual competition data and circuit trends.",
-    version: "1.0.0" 
+    version: "1.0.0"
   },
   servers: [{ url: "http://localhost:4000", description: "Local Development Server" }],
   security: [{ BearerAuth: [] }],
@@ -15,7 +15,7 @@ export const openapiSpec: OpenAPIObject = {
     { name: "Trends V1", description: "General circuit-wide statistics and leaderboards" },
     { name: "Trends V2", description: "Specialized pillar-based trend analysis" },
   ],
-  
+
   components: {
     securitySchemes: {
       BearerAuth: { type: "http", scheme: "bearer", bearerFormat: "JWT" },
@@ -86,12 +86,14 @@ export const openapiSpec: OpenAPIObject = {
       AthleteIdParam: { name: "player_id", in: "query", required: false, schema: { type: "string" }, description: "Unique player identifier" },
       AthleteNameParam: { name: "player_name", in: "query", required: false, schema: { type: "string" }, description: "Player's full name" },
       PrimaryKeyParam: { name: "primary_key", in: "query", required: false, schema: { type: "string" }, description: "Primary key for the specific match record" },
-      
+
       // Feature Specifics
       TableParam: { name: "table", in: "query", required: true, schema: { type: "string" }, description: "Source database table" },
       FeatureParam: { name: "feature", in: "query", required: true, schema: { type: "string" }, description: "Metric name (e.g., fast_arm_ms)" },
       PillerParam: { name: "piller", in: "path", required: true, schema: { type: "string", enum: ["endrange", "serve", "ros"] }, description: "Specific analysis pillar" },
       RankingBracketParam: { name: "ranking_bracket", in: "query", required: false, schema: { type: "string" }, description: "Ranking bucket (top_10, etc.)" },
+      RankingGroupParam: { name: "rank_group", in: "query", required: false, schema: { type: "string" }, description: "Ranking group (e.g., top_10, top_20)" },
+
     },
   },
 
@@ -117,7 +119,7 @@ export const openapiSpec: OpenAPIObject = {
     "/api/v2/competition/populations": {
       get: { tags: ["Competition V2"], summary: "Fetch populations for v2 flow", responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
-     "/api/v2/competition/athletes": {
+    "/api/v2/competition/athletes": {
       get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PopulationParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/competition/match-ids": {
@@ -130,7 +132,7 @@ export const openapiSpec: OpenAPIObject = {
       get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/competition/video": {
-      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }, { name: "video_key", in: "query", required: true, schema: { type: "string" } }, {name: "camera_angle", in: "query", required: true, schema: { type: "string" }}], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }, { name: "video_key", in: "query", required: true, schema: { type: "string" } }, { name: "camera_angle", in: "query", required: true, schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
 
     // --- TRENDS V1 ---
@@ -148,14 +150,55 @@ export const openapiSpec: OpenAPIObject = {
     "/api/v2/trends/selectors/serve": { get: { tags: ["Trends V2"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } } },
     "/api/v2/trends/selectors/ros": { get: { tags: ["Trends V2"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } } },
     "/api/v2/trends/selectors/endrange": { get: { tags: ["Trends V2"], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } } },
-    "/api/v2/trends/top-players/serve": {
-      get: { tags: ["Trends V2"], parameters: [{ name: "serve_call", in: "query", schema: { type: "string" } }, { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+    "/api/v2/trends/serve/overview": {
+      get: {
+        tags: ["Trends V2"],
+        parameters: [
+          { name: "feature", in: "query", schema: { type: "string" } }
+        ],
+        responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      }
     },
-    "/api/v2/trends/top-players/ros": {
-      get: { tags: ["Trends V2"], parameters: [{ name: "return_shot_type", in: "query", schema: { type: "string" } }, { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+     "/api/v2/trends/endrange/overview": {
+      get: {
+        tags: ["Trends V2"],
+        parameters: [
+          { name: "feature", in: "query", schema: { type: "string" } }
+        ],
+        responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      }
     },
-    "/api/v2/trends/top-players/endrange": {
-      get: { tags: ["Trends V2"], parameters: [{ name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+     "/api/v2/trends/ros/overview": {
+      get: {
+        tags: ["Trends V2"],
+        parameters: [
+          { name: "feature", in: "query", schema: { type: "string" } }
+        ],
+        responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      }
+    },
+    "/api/v2/trends/serve/top-players": {
+      get: {
+        tags: ["Trends V2"], parameters: [
+          { $ref: "#/components/parameters/RankingGroupParam" },
+          { name: "serve_call", in: "query", schema: { type: "string" } }, { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      },
+    },
+    "/api/v2/trends/ros/top-players": {
+      get: {
+        tags: ["Trends V2"], parameters: [
+          { $ref: "#/components/parameters/RankingGroupParam" },
+
+          { name: "return_shot_type", in: "query", schema: { type: "string" } }, { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      },
+    },
+    "/api/v2/trends/endrange/top-players": {
+      get: {
+        tags: ["Trends V2"], parameters: [
+          { $ref: "#/components/parameters/RankingGroupParam" },
+
+          { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      },
     },
   },
 };

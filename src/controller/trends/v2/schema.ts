@@ -4,6 +4,42 @@ import {  RankGroupEnum } from "../../../types";
 import { RosFeatureMetrics, RosReturnShotTypes } from "../../../types/ros.type";
 import { EndrangeFeatureMetrics } from "../../../types/endrange.type";
 
+export const GetTrendsServeOverviewSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["feature"],
+    properties: {
+
+        feature: { type: "string", enum: Object.values(ServeFeatureMetrics) },
+
+    }
+} as const; 
+
+
+export const GetTrendsRosOverviewSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["feature"],
+    properties: {
+
+        feature: { type: "string", enum: Object.values(RosFeatureMetrics) },
+
+    }
+} as const; 
+
+
+export const GetTrendsEndrangeOverviewSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["feature"],
+    properties: {
+
+        feature: { type: "string", enum: Object.values(EndrangeFeatureMetrics) },
+
+    }
+} as const; 
+
+
 export const GetTrendsServeTopPlayersSchema: SchemaObject = {
     type: "object",
     additionalProperties: false,
