@@ -13,17 +13,17 @@ router.get("/selectors/endrange", getEndrangeSelectors);
 
 const pillars = [
   {
-    name: "serve",
+    name: Piller.SERVE,
     overviewSchema: GetTrendsServeOverviewSchema,
     topPlayersSchema: GetTrendsServeTopPlayersSchema,
   },
   {
-    name: "endrange",
+    name: Piller.END_RANGE,
     overviewSchema: GetTrendsEndrangeOverviewSchema,
     topPlayersSchema: GetTrendsEndrangeTopPlayersSchema,
   },
   {
-    name: "ros",
+    name: Piller.RETURN_OF_SERVE,
     overviewSchema: GetTrendsRosOverviewSchema,
     topPlayersSchema: GetTrendsRosTopPlayersSchema,
   },
