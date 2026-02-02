@@ -130,7 +130,7 @@ export const openapiSpec: OpenAPIObject = {
       get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
     "/api/v2/competition/video": {
-      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }, { name: "video_key", in: "query", required: true, schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
+      get: { tags: ["Competition V2"], parameters: [{ $ref: "#/components/parameters/PrimaryKeyParam" }, { name: "video_key", in: "query", required: true, schema: { type: "string" } }, {name: "camera_angle", in: "query", required: true, schema: { type: "string" }}], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } } },
     },
 
     // --- TRENDS V1 ---
