@@ -11,30 +11,36 @@ router.get("/selectors/ros", getRosSelectors);
 router.get("/selectors/endrange", getEndrangeSelectors);
 
 
+const pillars = [
+  {
+    name: "serve",
+    overviewSchema: GetTrendsServeOverviewSchema,
+    topPlayersSchema: GetTrendsServeTopPlayersSchema,
+  },
+  {
+    name: "endrange",
+    overviewSchema: GetTrendsEndrangeOverviewSchema,
+    topPlayersSchema: GetTrendsEndrangeTopPlayersSchema,
+  },
+  {
+    name: "ros",
+    overviewSchema: GetTrendsRosOverviewSchema,
+    topPlayersSchema: GetTrendsRosTopPlayersSchema,
+  },
+];
 
-router.get(`/serve/overview`, validateAjv({
-    query: GetTrendsServeOverviewSchema
-}), getTrendsOverview);
+pillars.forEach(({ name, overviewSchema, topPlayersSchema }) => {
+  router.get(
+    `/${name}/overview`,
+    validateAjv({ query: overviewSchema }),
+    getTrendsOverview
+  );
 
-router.get(`serve/top-players`, validateAjv({
-    query: GetTrendsServeTopPlayersSchema
-}), getTopPlayers);
-router.get(`/endrange/overview`, validateAjv({
-    query: GetTrendsEndrangeOverviewSchema
-}), getTrendsOverview);
-router.get(`/endrange/top-players`, validateAjv({
-    query: GetTrendsEndrangeTopPlayersSchema
-}), getTopPlayers);
-
-router.get(`/ros/overview`, validateAjv({
-    query: GetTrendsRosOverviewSchema
-}), getTrendsOverview);
-router.get(`/ros/top-players`, validateAjv({
-    query: GetTrendsRosTopPlayersSchema
-}), getTopPlayers);
-
-
-
-
+  router.get(
+    `/${name}/top-players`,
+    validateAjv({ query: topPlayersSchema }),
+    getTopPlayers
+  );
+});
 
 export default router;
