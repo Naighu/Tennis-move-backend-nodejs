@@ -78,3 +78,49 @@ export const GetTrendsRosTopPlayersSchema: SchemaObject = {
 
     }
 } as const; 
+
+
+
+export const GetTrendsServePlayerStatSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["rank_group", "serve_call", "feature", "player_id"],
+    properties: {
+
+        rank_group: { type: "string", enum: Object.values(RankGroupEnum) },
+        serve_call: { type: "string", enum: Object.values(ServeCalls) },
+        feature: { type: "string", enum: Object.values(ServeFeatureMetrics) },
+        player_id: { type: "string" },
+
+
+    }
+} as const; 
+
+
+export const GetTrendsEndrangePlayerStatSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["rank_group", "feature","player_id"],
+    properties: {
+
+        rank_group: { type: "string", enum: Object.values(RankGroupEnum) },
+        feature: { type: "string", enum: Object.values(EndrangeFeatureMetrics) },
+          player_id: { type: "string" },
+
+    }
+} as const; 
+
+
+export const GetTrendsRosPlayerStatSchema: SchemaObject = {
+    type: "object",
+    additionalProperties: false,
+    required: ["rank_group", "return_shot_type", "feature", "player_id"],
+    properties: {
+
+        rank_group: { type: "string", enum: Object.values(RankGroupEnum) },
+        return_shot_type: { type: "string", enum: Object.values(RosReturnShotTypes) },
+        feature: { type: "string", enum: Object.values(RosFeatureMetrics) },
+          player_id: { type: "string" },
+
+    }
+} as const; 

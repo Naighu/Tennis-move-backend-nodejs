@@ -3,39 +3,66 @@ import { AWSKey, Piller, RankGroupEnum } from "../../../../types";
 import { expandServeCall } from "../../../../types/serve.type";
 import { GetTrendsEndrangeTopPlayersParams, GetTrendsRosTopPlayersParams, GetTrendsServeTopPlayersParams } from "../types";
 
+
+export type Row = {
+  rank_group: string;
+  n: number
+  player_id: string,
+  avg_feature: number
+  sd_feature: number
+
+};
+
 export async function fetchTrendsData(piller: Piller): Promise<Record<string, any>[]> {
   // This function would fetch the match list from s3 bucket
-
   console.log(`Fetching ${piller}.json`);
-  
+
   const data = await getObjectStream(AWSKey.TennisMoveBucket, `api_output/${piller}.json`)
   const jsonString = await streamToString(data.stream);
   const dataObject = JSON.parse(jsonString);
   return dataObject['data'];
-} 
+}
 
+
+export function formatTrendsData(data: Record<string, any>, feature: string): Row[] {
+  return data.map((r: any) => ({
+    rank_group: r.rank_group,
+    
+    tour: r.tour,
+    date: r.date,
+    match_id: r.match_id,
+    player_id: r.player_id,
+    first_name: r.first_name,
+    last_name: r.last_name,
+    short_name: r.short_name,
+    round: r.round,
+    n: r.n,
+    avg_feature: r[`avg_${feature}`],
+    sd_feature: r[`sd_${feature}`],
+  })) as Row[];
+}
 
 export async function fetchTrendsDataByFeatureAndRank(piller: Piller, rank_group: RankGroupEnum, feature: string): Promise<Record<string, any>[]> {
   const data = await fetchTrendsData(piller);
-  const filtered =  data.filter(item => item[`avg_${feature}`] !== undefined && item.rank_group === rank_group)
+  const filtered = data.filter(item => item[`avg_${feature}`] !== undefined && item.rank_group === rank_group)
   return filtered;
 }
 
 export function getTrendsSelectorCondition(item: Record<string, any>, piller: Piller, body: GetTrendsServeTopPlayersParams
-      | GetTrendsRosTopPlayersParams
-      | GetTrendsEndrangeTopPlayersParams) {
-      switch (piller) {
-        case Piller.SERVE:
-          const [serve_call, serve] = expandServeCall((body as GetTrendsServeTopPlayersParams).serve_call)[0];
-          return item.rank_group === body.rank_group &&
+  | GetTrendsRosTopPlayersParams
+  | GetTrendsEndrangeTopPlayersParams) {
+  switch (piller) {
+    case Piller.SERVE:
+      const [serve_call, serve] = expandServeCall((body as GetTrendsServeTopPlayersParams).serve_call)[0];
+      return item.rank_group === body.rank_group &&
         item.serve_call === serve_call &&
         item.serve === serve
-        case Piller.RETURN_OF_SERVE:
-          return item.rank_group === body.rank_group &&
+    case Piller.RETURN_OF_SERVE:
+      return item.rank_group === body.rank_group &&
         item.return_shot_type === (body as GetTrendsRosTopPlayersParams).return_shot_type
-        case Piller.END_RANGE:
-          return item.rank_group === body.rank_group
-        default:
-          throw new Error("Invalid piller value");
-      }
+    case Piller.END_RANGE:
+      return item.rank_group === body.rank_group
+    default:
+      throw new Error("Invalid piller value");
+  }
 }

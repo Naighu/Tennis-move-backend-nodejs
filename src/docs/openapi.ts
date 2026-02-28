@@ -14,6 +14,8 @@ export const openapiSpec: OpenAPIObject = {
     { name: "Competition V2", description: "Pillar-based (Serve, ROS, Endrange) match analysis" },
     { name: "Trends V1", description: "General circuit-wide statistics and leaderboards" },
     { name: "Trends V2", description: "Specialized pillar-based trend analysis" },
+    { name: "Player", description: "Player Details" },
+
   ],
 
   components: {
@@ -198,6 +200,18 @@ export const openapiSpec: OpenAPIObject = {
           { $ref: "#/components/parameters/RankingGroupParam" },
 
           { name: "feature", in: "query", schema: { type: "string" } }], responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
+      },
+    },
+
+     "/api/v2/player/{player_id}": {
+      get: {
+        tags: ["Player"],
+        parameters: [
+{
+ name: "player_id", in: "path", schema: {type: "string"}
+}
+        ],
+        responses: { "200": { content: { "application/json": { schema: { $ref: "#/components/schemas/ApiSuccess" } } } } }
       },
     },
   },

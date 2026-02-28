@@ -1,6 +1,8 @@
 import { Router, Request, Response, NextFunction } from "express";
 import competition from "./competition.routes";
 import trends from "./trends.routes";
+import player from "./player.routes"
+
 
 
 
@@ -21,5 +23,5 @@ v2.get("/status", (_req, res) => sendOk(res,{ version: "v2"}));
 // mount feature routers
 v2.use("/trends", trends);   // /api/v2/trends
 v2.use("/competition", competition);   // /api/v2/competition
-
+v2.use("/player", player); 
 export default v2;
