@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-
+import TinyQueue from "tinyqueue";
 import { AppError } from "../../../types/error.type";
 import { sendOk } from "../../../utils/respond";
 import { Piller, RankGroupEnum } from "../../../types";
@@ -56,7 +56,7 @@ export async function getTrendsOverview(req: Request, res: Response) {
   try {
 
 
-      const piller = req.piller!
+    const piller = req.piller!
 
     let body = req.query as unknown as GetTrendsOverviewParams;
 
@@ -88,7 +88,7 @@ export async function getTrendsOverview(req: Request, res: Response) {
 
 export async function getTopPlayers(req: Request, res: Response) {
   try {
-  const piller = req.piller!
+    const piller = req.piller!
     let body = req.query as unknown as GetTrendsServeTopPlayersParams
       | GetTrendsRosTopPlayersParams
       | GetTrendsEndrangeTopPlayersParams;
@@ -96,12 +96,34 @@ export async function getTopPlayers(req: Request, res: Response) {
 
 
     const data = await fetchTrendsData(piller);
-    let filteredData = data
-      .filter((row) => getTrendsSelectorCondition(row, piller, body))
+      let filteredData = data
+        .filter((row) => getTrendsSelectorCondition(row, piller, body))
+  
+
+    // const heap = new TinyQueue<any>(
+    //   [],
+    //   (a:any, b:any) => (a[`avg_${body.feature}`] || 0) - (b[`avg_${body.feature}`] || 0) // min heap
+    // );
+
+    // console.log(filteredData.length);
+    
+    // for (const row of filteredData) {
+    //   // if (!getTrendsSelectorCondition(row, piller, body)) continue;
+
+    //   heap.push(row);
+
+    //   if (heap.length > 10) {
+    //     heap.pop(); // removes smallest avg_feature
+    //   }
+    // }
+
+    //  filteredData = heap.data
+    //   .slice()
+    //   .sort((a:any, b:any) => (b[`avg_${body.feature}`] || 0) - (a[`avg_${body.feature}`] || 0));
 
     filteredData = formatTrendsData(filteredData, body.feature)
 
-    const merged = mergeByPlayer(filteredData as Row[])
+    const merged = mergeByPlayer(filteredData as Row[]).sort((a, b) => (b[`avg_feature`] || 0) - (a[`avg_feature`] || 0)).slice(0, 10)
     return sendOk(res, merged);
   } catch (err: any) {
     if (err instanceof AppError) {
@@ -114,8 +136,8 @@ export async function getTopPlayers(req: Request, res: Response) {
 
 export async function getPlayerTrendsStat(req: Request, res: Response) {
   try {
-  const piller = req.piller!
-   
+    const piller = req.piller!
+
     let body = req.query as unknown as GetTrendsServePlayerStatParams
       | GetTrendsRosPlayerStatParams
       | GetTrendsEndrangePlayerStatParams;
