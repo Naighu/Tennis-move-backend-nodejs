@@ -98,7 +98,7 @@ export async function getTopPlayers(req: Request, res: Response) {
       let filteredData = data
         .filter((row) => getTrendsSelectorCondition(row, piller, body))
 
-    filteredData = formatTrendsData(filteredData, body.feature)
+    filteredData = formatTrendsData(filteredData, body.feature) 
 
     const merged = mergeByPlayer(filteredData as Row[]).sort((a, b) => (b[`avg_feature`] || 0) - (a[`avg_feature`] || 0)).slice(0, 10);
     return sendOk(res, merged);

@@ -51,9 +51,6 @@ export function groupByPlayerId(data: Row[]) {
 }
 export function mergeByPlayer(data: Row[]) {
     const grouped: Record<string, any> = groupByPlayerId(data);
-
-
-
     // 2️⃣ Compute weighted mean & pooled SD
     return Object.values(grouped).map((player) => {
         const weightedMean = player.sumWeightedMean / player.totalN;
