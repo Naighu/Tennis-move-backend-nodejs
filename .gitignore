@@ -1,3 +1,4 @@
 node_modules
 .env
 src/controller/competition/v1/*.json
+coverage/
