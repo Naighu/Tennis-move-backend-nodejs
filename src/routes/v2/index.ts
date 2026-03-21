@@ -18,7 +18,7 @@ v2.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 // simple ping for this version
-v2.get("/status", (_req, res) => sendOk(res,{ version: "v2"}));
+v2.get("/status", (_req: Request, res: Response) => sendOk(res,{ version: "v2"}));
 
 // mount feature routers
 v2.use("/trends",authMiddleware, trends);   // /api/v2/trends

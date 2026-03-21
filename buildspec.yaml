@@ -1,0 +1,24 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 20
+    commands:
+      - npm ci
+  pre_build:
+    commands:
+      - echo Running tests...
+      - npm test || true
+  build:
+    commands:
+      - echo Compiling TypeScript...
+      - npx tsc
+      - cp package.json dist/
+      - cp package-lock.json dist/
+      - cd dist && npm ci --production && cd ..
+      - zip -r function.zip dist/ node_modules/
+
+artifacts:
+  files:
+    - function.zip

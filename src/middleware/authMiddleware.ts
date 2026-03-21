@@ -28,6 +28,7 @@ export async function authMiddleware(
     }
 
     const token = authHeader.split(" ")[1];
+    
     jwt.verify(
       token,
       getKey,
@@ -36,8 +37,8 @@ export async function authMiddleware(
         issuer: COGNITO_DOMAIN,
       },
       (err, decoded) => {
-        if (err) return res.status(401).json({ message: "Invalid token" });
-        (req as any).user = decoded; // attach decoded payload to request
+        if (err) return res.status(401).json({ message: "Invalid token"});
+        (req as any).user = decoded; 
         next();
       }
     );
