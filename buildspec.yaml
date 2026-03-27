@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 20
+      nodejs: 22
     commands:
       - npm ci
   pre_build:
@@ -17,8 +17,8 @@ phases:
       - cp package.json dist/
       - cp package-lock.json dist/
       - cd dist && npm ci --production && cd ..
-      - zip -r function.zip dist/ node_modules/
 
 artifacts:
   files:
-    - function.zip
+    - "**/*"
+  base-directory: dist
